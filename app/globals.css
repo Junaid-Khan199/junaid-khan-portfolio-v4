@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #0d1117;
+  color: #e6edf3;
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #22d3ee;
+}
+
+/* ── Glass utility ────────────────────────────────────────────── */
+.glass {
+  background: rgba(22, 27, 34, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-hover:hover {
+  border-color: rgba(34, 211, 238, 0.4);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.05);
+}
+
+/* ── Glows ────────────────────────────────────────────────────── */
+.glow-cyan {
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.2);
+}
+.glow-text {
+  text-shadow: 0 0 30px rgba(34, 211, 238, 0.4);
+}
+
+/* ── Grid background ──────────────────────────────────────────── */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(48, 54, 61, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(48, 54, 61, 0.15) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* ── Text gradients ───────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #22d3ee, #10b981, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Code font ────────────────────────────────────────────────── */
+.code-font {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ── Section spacing — consistent, not too wide ──────────────── */
+/* All py-24 in old code → py-16 in new components.
+   This ensures no double-spacing from both py and margin */
+section + section {
+  /* no extra margin — dividers handle separation */
+}
+
+/* ── Animations ───────────────────────────────────────────────── */
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .animate-float-delayed {
+    animation: float 6s ease-in-out infinite 2s;
+  }
+  .animate-float-slow {
+    animation: float 8s ease-in-out infinite 1s;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes scan {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100vw); }
+}
+
+.scan-line {
+  animation: scan 6s linear infinite;
+  background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.3), transparent);
+  height: 1px;
+  width: 200px;
+}
+
+/* ── Fullscreen dashboard ─────────────────────────────────────── */
+:fullscreen {
+  background: #0d1117;
+  overflow-y: auto;
+}
+:-webkit-full-screen {
+  background: #0d1117;
+  overflow-y: auto;
+}
