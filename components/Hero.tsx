@@ -60,11 +60,11 @@ export default function Hero() {
         ))}
       </div>
 
-      <motion.div style={{ opacity }} className="relative z-10 w-full px-6 lg:px-10 py-20 pt-24">
-        <div className="grid lg:grid-cols-1 gap-8 lg:gap-12 items-start min-h-[85vh]">
+      <motion.div style={{ opacity }} className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10 py-20 pt-24">
+        <div className="grid lg:grid-cols-1 gap-8 lg:gap-12 items-start justify-items-end min-h-[85vh]">
 
           {/* ── MAIN CONTENT ── */}
-          <div className="order-2 lg:order-1 flex flex-col justify-center space-y-7 max-w-4xl lg:pr-8 xl:pr-12 ml-auto items-end text-right">
+          <div className="order-2 lg:order-1 flex flex-col justify-center space-y-7 max-w-4xl lg:pr-8 xl:pr-12 items-end text-right">
 
             {/* Status pill */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
