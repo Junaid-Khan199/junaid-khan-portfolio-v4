@@ -405,6 +405,7 @@ export function Contact() {
 export function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [logoOpen, setLogoOpen] = useState(false)
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 20)
     window.addEventListener("scroll", h)
@@ -417,104 +418,121 @@ export function Nav() {
     { href: "#dashboard", label: "Dashboard" },
     { href: "#sql", label: "SQL" },
     { href: "#python", label: "Python" },
-    { href: "#resume", label: "Resume" },
+    { href: "#resume", label: "Resume + Experience" },
     { href: "#contact", label: "Contact" },
   ]
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-[#0d1117]/90 backdrop-blur-xl border-b border-[#30363d]" : ""}`}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-3 group">
-          <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-cyan-500/25 bg-slate-950/70 flex items-center justify-center group-hover:border-cyan-400 transition-all">
-            <Image src="/My_Logo.png" alt="Junaid Khan logo" fill className="object-contain" />
+    <>
+      {logoOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 py-8">
+          <div className="relative w-full max-w-3xl h-full max-h-[90vh] overflow-hidden rounded-[32px] border border-slate-700 bg-[#0d1117] shadow-2xl">
+            <button type="button" onClick={() => setLogoOpen(false)}
+              className="absolute right-4 top-4 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full bg-slate-900/90 text-slate-100 hover:bg-slate-800 transition-colors">
+              ✕
+            </button>
+            <div className="absolute inset-0 p-6">
+              <div className="relative h-full w-full rounded-[28px] overflow-hidden border border-slate-700 bg-[#0f1720]">
+                <Image src="/My_Logo.png" alt="Junaid Khan logo preview" fill className="object-contain" />
+              </div>
+            </div>
           </div>
-          <span className="font-bold text-base"><span className="text-cyan-400">Junaid</span><span className="text-white">Khan</span></span>
-        </a>
-        <div className="hidden lg:flex items-center gap-1">
-          {links.map(l => (
-            <a key={l.href} href={l.href}
-              className="px-3 py-2 rounded-lg text-sm text-slate-400 hover:text-white hover:bg-white/5 transition-all">
-              {l.label}
-            </a>
-          ))}
         </div>
-        <div className="flex items-center gap-3">
-          <a href="mailto:junaidkhaan455@gmail.com"
-            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold text-[#0d1117]"
-            style={{ background: "linear-gradient(135deg,#22d3ee,#10b981)" }}>
-            Hire Me
-          </a>
-          <button onClick={() => setOpen(!open)} className="lg:hidden w-9 h-9 rounded-lg glass border border-[#30363d] flex items-center justify-center text-slate-400 hover:text-white transition-colors">
-            {open ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-          </button>
-        </div>
-      </div>
-      {open && (
-        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
-          className="lg:hidden bg-[#0d1117]/95 backdrop-blur-xl border-b border-[#30363d] px-6 pb-4">
-          {links.map(l => (
-            <a key={l.href} href={l.href} onClick={() => setOpen(false)}
-              className="block py-2.5 text-sm text-slate-400 hover:text-white transition-colors border-b border-[#30363d]/50 last:border-0">
-              {l.label}
-            </a>
-          ))}
-        </motion.div>
       )}
-    </nav>
-  )
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-[#0d1117]/90 backdrop-blur-xl border-b border-[#30363d]" : ""}`}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
+          <motion.button type="button" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }} onClick={() => setLogoOpen(true)}
+            className="flex-1 flex items-center gap-3 rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-500/50">
+            <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-cyan-500/25 bg-slate-950/70 flex items-center justify-center group-hover:border-cyan-400 transition-all">
+              <Image src="/My_Logo.png" alt="Junaid Khan logo" fill className="object-contain" />
+            </div>
+            <span className="font-bold text-base"><span className="text-cyan-400">Junaid</span><span className="text-white">Khan</span></span>
+          </motion.button>
+          <div className="hidden lg:flex items-center gap-1">
+            {links.map(l => (
+              <a key={l.href} href={l.href}
+                className="px-3 py-2 rounded-lg text-sm text-slate-400 hover:text-white hover:bg-white/5 transition-all">
+                {l.label}
+              </a>
+            ))}
+          </div>
+          <div className="flex items-center gap-3">
+            <a href="mailto:junaidkhaan455@gmail.com"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold text-[#0d1117]"
+              style={{ background: "linear-gradient(135deg,#22d3ee,#10b981)" }}>
+              Hire Me
+            </a>
+            <button onClick={() => setOpen(!open)} className="lg:hidden w-9 h-9 rounded-lg glass border border-[#30363d] flex items-center justify-center text-slate-400 hover:text-white transition-colors">
+              {open ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            </button>
+          </div>
+        </div>
+        {open && (
+          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
+            className="lg:hidden bg-[#0d1117]/95 backdrop-blur-xl border-b border-[#30363d] px-6 pb-4">
+            {links.map(l => (
+              <a key={l.href} href={l.href} onClick={() => setOpen(false)}
+                className="block py-2.5 text-sm text-slate-400 hover:text-white transition-colors border-b border-[#30363d]/50 last:border-0">
+                {l.label}
+              </a>
+            ))}
+          </motion.div>
+        )}
+      </nav>
+      )
 }
 
-// ── FOOTER ─────────────────────────────────────────────────────────
-export function Footer() {
+      // ── FOOTER ─────────────────────────────────────────────────────────
+      export function Footer() {
   return (
-    <footer className="border-t border-[#30363d] py-10">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-          <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2.5 mb-3">
-              <div className="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
-                <BarChart3 className="w-4 h-4 text-cyan-400" />
+      <footer className="border-t border-[#30363d] py-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+            <div className="col-span-2 md:col-span-1">
+              <div className="flex items-center gap-2.5 mb-3">
+                <div className="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
+                  <BarChart3 className="w-4 h-4 text-cyan-400" />
+                </div>
+                <span className="font-bold"><span className="text-cyan-400">Junaid</span><span className="text-white">Khan</span></span>
               </div>
-              <span className="font-bold"><span className="text-cyan-400">Junaid</span><span className="text-white">Khan</span></span>
-            </div>
-            <p className="text-xs text-slate-500 max-w-[220px] leading-relaxed mb-4">Data Analyst transforming raw data into actionable business insights. Open to GCC & remote roles.</p>
-            <div className="flex gap-2">
-              {[{ icon: Github, href: "https://github.com/Junaid-Khan199" }, { icon: Linkedin, href: "https://www.linkedin.com/in/junaid-khan-199j" }, { icon: Mail, href: "mailto:junaidkhaan455@gmail.com" }].map((s, i) => (
-                <a key={i} href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg glass border border-[#30363d] flex items-center justify-center text-slate-500 hover:text-cyan-400 hover:border-cyan-500/40 transition-all">
-                  <s.icon className="w-4 h-4" />
-                </a>
-              ))}
-            </div>
-          </div>
-          {[
-            { title: "Navigate", links: [["About", "#about"], ["Skills", "#skills"], ["Projects", "#projects"], ["Dashboard", "#dashboard"]] },
-            { title: "Tools", links: [["SQL Runner", "#sql"], ["Python Lab", "#python"], ["Resume", "#resume"], ["Contact", "#contact"]] },
-            { title: "Contact", links: [["junaidkhaan455@gmail.com", "mailto:junaidkhaan455@gmail.com"], ["GitHub", "https://github.com/Junaid-Khan199"], ["LinkedIn", "https://www.linkedin.com/in/junaid-khan-199j"]] },
-          ].map(col => (
-            <div key={col.title}>
-              <h4 className="text-sm font-bold text-white mb-3">{col.title}</h4>
-              <ul className="space-y-2">
-                {col.links.map(([label, href]) => (
-                  <li key={label}>
-                    <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
-                      className="text-xs text-slate-500 hover:text-cyan-400 transition-colors truncate block">
-                      {label}
-                    </a>
-                  </li>
+              <p className="text-xs text-slate-500 max-w-[220px] leading-relaxed mb-4">Data Analyst transforming raw data into actionable business insights. Open to GCC & remote roles.</p>
+              <div className="flex gap-2">
+                {[{ icon: Github, href: "https://github.com/Junaid-Khan199" }, { icon: Linkedin, href: "https://www.linkedin.com/in/junaid-khan-199j" }, { icon: Mail, href: "mailto:junaidkhaan455@gmail.com" }].map((s, i) => (
+                  <a key={i} href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
+                    className="w-9 h-9 rounded-lg glass border border-[#30363d] flex items-center justify-center text-slate-500 hover:text-cyan-400 hover:border-cyan-500/40 transition-all">
+                    <s.icon className="w-4 h-4" />
+                  </a>
                 ))}
-              </ul>
+              </div>
             </div>
-          ))}
+            {[
+              { title: "Navigate", links: [["About", "#about"], ["Skills", "#skills"], ["Projects", "#projects"], ["Dashboard", "#dashboard"]] },
+              { title: "Tools", links: [["SQL Runner", "#sql"], ["Python Lab", "#python"], ["Resume", "#resume"], ["Contact", "#contact"]] },
+              { title: "Contact", links: [["junaidkhaan455@gmail.com", "mailto:junaidkhaan455@gmail.com"], ["GitHub", "https://github.com/Junaid-Khan199"], ["LinkedIn", "https://www.linkedin.com/in/junaid-khan-199j"]] },
+            ].map(col => (
+              <div key={col.title}>
+                <h4 className="text-sm font-bold text-white mb-3">{col.title}</h4>
+                <ul className="space-y-2">
+                  {col.links.map(([label, href]) => (
+                    <li key={label}>
+                      <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
+                        className="text-xs text-slate-500 hover:text-cyan-400 transition-colors truncate block">
+                        {label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div className="flex items-center justify-between pt-6 border-t border-[#30363d]">
+            <p className="text-xs text-slate-600">© 2026 Junaid Khan · Data Analyst · All rights reserved.</p>
+            <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="w-9 h-9 rounded-lg glass border border-[#30363d] flex items-center justify-center text-slate-500 hover:text-cyan-400 hover:border-cyan-500/40 transition-all">
+              <ArrowUp className="w-4 h-4" />
+            </button>
+          </div>
         </div>
-        <div className="flex items-center justify-between pt-6 border-t border-[#30363d]">
-          <p className="text-xs text-slate-600">© 2026 Junaid Khan · Data Analyst · All rights reserved.</p>
-          <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="w-9 h-9 rounded-lg glass border border-[#30363d] flex items-center justify-center text-slate-500 hover:text-cyan-400 hover:border-cyan-500/40 transition-all">
-            <ArrowUp className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
-    </footer>
-  )
+      </footer>
+      )
 }

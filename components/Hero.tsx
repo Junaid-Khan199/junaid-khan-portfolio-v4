@@ -61,10 +61,10 @@ export default function Hero() {
       </div>
 
       <motion.div style={{ opacity }} className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10 py-20 pt-24">
-        <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center min-h-[85vh]">
+        <div className="grid lg:grid-cols-1 gap-8 lg:gap-12 items-center min-h-[85vh]">
 
-          {/* ── LEFT — 3 cols ── */}
-          <div className="lg:col-span-3 order-2 lg:order-1 flex flex-col justify-center space-y-7">
+          {/* ── MAIN CONTENT ── */}
+          <div className="order-2 lg:order-1 flex flex-col justify-center space-y-7 max-w-4xl lg:pl-8 xl:pl-12">
 
             {/* Status pill */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
@@ -73,8 +73,7 @@ export default function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-400" />
               </span>
-              <span className="text-sm text-slate-300">Open to GCC &amp; Remote opportunities</span>
-              <span className="flex items-center gap-1 text-xs text-slate-500"><MapPin className="w-3 h-3" />Kohat, Pakistan</span>
+              <span className="text-sm text-slate-300">Open to GCC &amp; Remote opportunities Worldwide</span>
             </motion.div>
 
             {/* Name */}
@@ -159,57 +158,6 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* ── RIGHT — photo 2 cols ── */}
-          <div className="lg:col-span-2 order-1 lg:order-2 flex items-center justify-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.85, y: 30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 0.25, duration: 0.9, type: "spring", stiffness: 80 }}
-              className="relative w-full max-w-sm lg:max-w-none"
-            >
-              {/* Outer glow ring */}
-              <div className="absolute -inset-4 rounded-[32px] bg-gradient-to-br from-cyan-500/20 via-emerald-500/15 to-violet-500/20 blur-2xl" />
-
-              {/* Photo frame */}
-              <div className="relative rounded-[28px] overflow-hidden border-2 border-[#30363d] shadow-2xl"
-                style={{ boxShadow: "0 0 80px rgba(34,211,238,0.15), 0 40px 80px rgba(0,0,0,0.5)" }}>
-                <Image
-                  src="/profile.jpg"
-                  alt="Junaid Khan — Data Analyst"
-                  width={520}
-                  height={620}
-                  priority
-                  className="w-full h-auto object-cover object-top"
-                  style={{ display: "block", maxHeight: "72vh", objectFit: "cover", objectPosition: "center top" }}
-                />
-                {/* Bottom gradient for smooth fade */}
-                <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#0d1117]/70 to-transparent" />
-
-                {/* Floating badge — bottom left */}
-                <div className="absolute bottom-5 left-5 right-5">
-                  <div className="glass rounded-2xl px-4 py-3 border border-white/10 flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
-                      <BarChart3 className="w-4 h-4 text-cyan-400" />
-                    </div>
-                    <div>
-                      <p className="text-white font-bold text-sm leading-tight">Data Analyst</p>
-                      <p className="text-slate-400 text-xs">Kohat, Pakistan · 4+ yrs exp.</p>
-                    </div>
-                    <div className="ml-auto flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                      <span className="text-emerald-400 text-xs font-semibold">Open</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Corner accents */}
-              <div className="absolute -top-1.5 -left-1.5 w-10 h-10 border-t-2 border-l-2 border-cyan-400/70 rounded-tl-3xl" />
-              <div className="absolute -top-1.5 -right-1.5 w-10 h-10 border-t-2 border-r-2 border-emerald-400/70 rounded-tr-3xl" />
-              <div className="absolute -bottom-1.5 -left-1.5 w-10 h-10 border-b-2 border-l-2 border-emerald-400/70 rounded-bl-3xl" />
-              <div className="absolute -bottom-1.5 -right-1.5 w-10 h-10 border-b-2 border-r-2 border-violet-400/70 rounded-br-3xl" />
-            </motion.div>
-          </div>
         </div>
       </motion.div>
 
@@ -225,3 +173,4 @@ export default function Hero() {
     </section>
   )
 }
+
