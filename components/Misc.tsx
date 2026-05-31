@@ -479,8 +479,8 @@ export function Nav() {
       {/* Floating logo moved out of header: clickable, fixed on page just below the header */}
       <button onClick={() => setLogoOpen(true)} aria-label="Open logo preview"
         className="fixed left-6 z-50"
-        style={{ top: 'calc(4rem + 0.4rem)', width: '2in', height: '3in', padding: 0 }}>
-        <div style={{ width: '2in', height: '3in', position: 'relative' }} className="rounded-2xl overflow-hidden border border-cyan-500/25 bg-slate-950/70">
+        style={{ top: 'calc(4rem + 0.4rem)', width: '3in', height: '3in', padding: 0 }}>
+        <div style={{ width: '3in', height: '3in', position: 'relative' }} className="overflow-hidden">
           <Image src="/My_Logo.png" alt="Junaid Khan logo" fill className="object-contain" />
         </div>
       </button>
