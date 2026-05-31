@@ -1,5 +1,6 @@
 "use client"
 import { useRef, useState, useEffect } from "react"
+import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { Github, Linkedin, Mail, Download, Award, GraduationCap, Briefcase, ExternalLink, Send, CheckCircle, BarChart3, ArrowUp, Menu, X, Database, Code2, RefreshCw } from "lucide-react"
 
@@ -162,14 +163,14 @@ export function KPISection() {
 export function Resume() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const [cvUrl, setCvUrl] = useState("/cv.pdf")
+  const [cvUrl, setCvUrl] = useState("/junaid_khan_CV.pdf")
 
   // Try to get CV from GitHub
   useEffect(() => {
-    const ghCvUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_USER}/main/cv.pdf`
+    const ghCvUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_USER}/main/junaid_khan_CV.pdf`
     fetch(ghCvUrl, { method: "HEAD" })
       .then(r => { if (r.ok) setCvUrl(ghCvUrl) })
-      .catch(() => {})
+      .catch(() => { })
   }, [])
 
   return (
@@ -209,7 +210,7 @@ export function Resume() {
                 <span className="px-2.5 py-1 rounded-full bg-cyan-500/10 text-xs text-cyan-400">2021 – Present</span>
               </div>
               <ul className="space-y-2">
-                {["Delivered 7+ end-to-end analytics projects across retail, healthcare & consumer research over 4+ years — 100% on-time delivery.","Managed full lifecycle: requirements → ETL → statistical modeling → executive reporting.","Fish Market Consumer Behavior Analysis — client-assigned ANOVA & Chi-Square project.","Managed 5+ concurrent client relationships; delivered data-driven pricing and inventory recommendations."].map(r => (
+                {["Delivered 7+ end-to-end analytics projects across retail, healthcare & consumer research over 4+ years — 100% on-time delivery.", "Managed full lifecycle: requirements → ETL → statistical modeling → executive reporting.", "Fish Market Consumer Behavior Analysis — client-assigned ANOVA & Chi-Square project.", "Managed 5+ concurrent client relationships; delivered data-driven pricing and inventory recommendations."].map(r => (
                   <li key={r} className="flex items-start gap-2 text-xs text-slate-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 mt-1.5 flex-shrink-0" />{r}
                   </li>
@@ -243,7 +244,7 @@ export function Resume() {
             {[{
               degree: "BS — Statistics", uni: "KUST", period: "2021–2025", gpa: "CGPA 3.02",
               note: "Published peer-reviewed research as final year project.", color: "#22d3ee"
-            },{
+            }, {
               degree: "FSc — Computer Science", uni: "GDC Gumbat, Kohat", period: "2018–2020", gpa: "768 Marks",
               note: "", color: "#10b981"
             }].map(e => (
@@ -336,7 +337,7 @@ export function Contact() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid sm:grid-cols-2 gap-4">
-                    {[{id:"name",label:"Name",type:"text",ph:"Your name"},{id:"email",label:"Email",type:"email",ph:"your@email.com"}].map(f => (
+                    {[{ id: "name", label: "Name", type: "text", ph: "Your name" }, { id: "email", label: "Email", type: "email", ph: "your@email.com" }].map(f => (
                       <div key={f.id} className="space-y-1.5">
                         <label htmlFor={f.id} className="text-sm font-semibold text-slate-300">{f.label}</label>
                         <input id={f.id} type={f.type} placeholder={f.ph} required
@@ -423,9 +424,9 @@ export function Nav() {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-[#0d1117]/90 backdrop-blur-xl border-b border-[#30363d]" : ""}`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2.5 group">
-          <div className="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/25 flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors">
-            <BarChart3 className="w-4 h-4 text-cyan-400" />
+        <a href="#" className="flex items-center gap-3 group">
+          <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-cyan-500/25 bg-slate-950/70 flex items-center justify-center group-hover:border-cyan-400 transition-all">
+            <Image src="/My_Logo.png" alt="Junaid Khan logo" fill className="object-contain" />
           </div>
           <span className="font-bold text-base"><span className="text-cyan-400">Junaid</span><span className="text-white">Khan</span></span>
         </a>
@@ -487,9 +488,9 @@ export function Footer() {
             </div>
           </div>
           {[
-            { title: "Navigate", links: [["About","#about"],["Skills","#skills"],["Projects","#projects"],["Dashboard","#dashboard"]] },
-            { title: "Tools", links: [["SQL Runner","#sql"],["Python Lab","#python"],["Resume","#resume"],["Contact","#contact"]] },
-            { title: "Contact", links: [["junaidkhaan455@gmail.com","mailto:junaidkhaan455@gmail.com"],["GitHub","https://github.com/Junaid-Khan199"],["LinkedIn","https://www.linkedin.com/in/junaid-khan-199j"]] },
+            { title: "Navigate", links: [["About", "#about"], ["Skills", "#skills"], ["Projects", "#projects"], ["Dashboard", "#dashboard"]] },
+            { title: "Tools", links: [["SQL Runner", "#sql"], ["Python Lab", "#python"], ["Resume", "#resume"], ["Contact", "#contact"]] },
+            { title: "Contact", links: [["junaidkhaan455@gmail.com", "mailto:junaidkhaan455@gmail.com"], ["GitHub", "https://github.com/Junaid-Khan199"], ["LinkedIn", "https://www.linkedin.com/in/junaid-khan-199j"]] },
           ].map(col => (
             <div key={col.title}>
               <h4 className="text-sm font-bold text-white mb-3">{col.title}</h4>

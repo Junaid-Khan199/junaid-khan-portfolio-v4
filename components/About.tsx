@@ -1,5 +1,6 @@
 "use client"
 import { useRef } from "react"
+import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { MapPin, GraduationCap, Globe, Target, Lightbulb, TrendingUp, Zap, Code2, BarChart3, Database, Award, BookOpen, Clock } from "lucide-react"
 
@@ -18,7 +19,7 @@ function OrbitDiagram({ isInView }: { isInView: boolean }) {
   const radius = 148
   return (
     <div className="relative w-[380px] h-[380px] mx-auto select-none">
-      {[0,1,2].map(i => (
+      {[0, 1, 2].map(i => (
         <motion.div key={i} className="absolute rounded-full border border-cyan-500/10"
           style={{ inset: `${i * 26}px` }}
           animate={{ rotate: i % 2 === 0 ? 360 : -360 }}
@@ -27,10 +28,10 @@ function OrbitDiagram({ isInView }: { isInView: boolean }) {
       {/* Center */}
       <div className="absolute inset-[94px] glass rounded-full border border-[#30363d] flex flex-col items-center justify-center text-center z-10">
         <p className="text-4xl font-black text-cyan-400">7+</p>
-        <p className="text-[10px] text-slate-500 leading-tight">Analytics<br/>Projects</p>
+        <p className="text-[10px] text-slate-500 leading-tight">Analytics<br />Projects</p>
         <div className="w-px h-3 bg-cyan-500/30 my-1" />
         <p className="text-2xl font-black text-emerald-400">4+</p>
-        <p className="text-[10px] text-slate-500 leading-tight">Years<br/>Experience</p>
+        <p className="text-[10px] text-slate-500 leading-tight">Years<br />Experience</p>
       </div>
       {orbitItems.map((item, i) => {
         const rad = (item.angle * Math.PI) / 180
@@ -66,10 +67,13 @@ export function About() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-          {/* Orbit diagram */}
+          {/* About image */}
           <motion.div initial={{ opacity: 0, x: -40 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.7 }}
-            className="hidden lg:flex items-center justify-center">
-            <OrbitDiagram isInView={isInView} />
+            className="flex items-center justify-center">
+            <div className="relative w-full max-w-md aspect-[4/5] rounded-[32px] overflow-hidden border border-[#30363d] shadow-2xl bg-[#0d1117]">
+              <Image src="/For_About.png" alt="Junaid Khan about image" fill className="object-cover object-center" priority />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117]/80 via-transparent to-transparent" />
+            </div>
           </motion.div>
 
           {/* Text */}
@@ -112,7 +116,7 @@ export function About() {
                     <f.icon className="w-4 h-4 text-cyan-400" />
                   </div>
                   {f.clickable ? (
-                    <a href={(f as {href:string}).href} target="_blank" rel="noopener noreferrer"
+                    <a href={(f as { href: string }).href} target="_blank" rel="noopener noreferrer"
                       className="font-semibold text-cyan-400 hover:text-cyan-300 text-sm underline underline-offset-2 transition-colors">
                       {f.v}
                     </a>
@@ -126,7 +130,7 @@ export function About() {
 
             {/* Mini KPIs */}
             <div className="grid grid-cols-3 gap-3 pt-2">
-              {[["97%","Best ML Accuracy"],["185K+","Records Processed"],["4+","Years Experience"]].map(([v,l]) => (
+              {[["97%", "Best ML Accuracy"], ["185K+", "Records Processed"], ["4+", "Years Experience"]].map(([v, l]) => (
                 <div key={l} className="glass rounded-xl p-4 border border-[#30363d] hover:border-cyan-500/30 transition-colors text-center">
                   <p className="text-2xl font-black text-cyan-400">{v}</p>
                   <p className="text-xs text-slate-500 mt-1">{l}</p>

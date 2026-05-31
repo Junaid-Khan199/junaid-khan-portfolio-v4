@@ -32,9 +32,12 @@ export default function Hero() {
   return (
     <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden bg-[#0d1117]">
 
+      <Image src="/For_Background.png" alt="Hero background" fill priority className="absolute inset-0 object-cover object-center" />
+      <div className="absolute inset-0 bg-slate-950/65" />
+
       {/* ── Animated BG ── */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="grid-pattern absolute inset-0 opacity-30" />
+        <div className="grid-pattern absolute inset-0 opacity-25" />
         <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] rounded-full bg-cyan-500/6 blur-[140px]" />
         <div className="absolute bottom-[-20%] right-[-10%] w-[700px] h-[700px] rounded-full bg-emerald-500/5 blur-[140px]" />
         <div className="absolute top-[40%] left-[40%] w-[400px] h-[400px] rounded-full bg-violet-500/4 blur-[100px]" />
@@ -132,7 +135,7 @@ export default function Hero() {
                 style={{ background: "linear-gradient(135deg,#22d3ee,#10b981)" }}>
                 <BarChart3 className="w-5 h-5" /> View My Work
               </motion.a>
-              <motion.a href="/cv.pdf" download whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
+              <motion.a href="/junaid_khan_CV.pdf" download whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-semibold text-white text-base glass border border-slate-600 hover:border-cyan-500/60 transition-all">
                 <Download className="w-5 h-5" /> Download CV
               </motion.a>
