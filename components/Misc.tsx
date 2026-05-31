@@ -1,5 +1,6 @@
 "use client"
 import { useRef, useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { Github, Linkedin, Mail, Download, Award, GraduationCap, Briefcase, ExternalLink, Send, CheckCircle, BarChart3, ArrowUp, Menu, X, Database, Code2, RefreshCw } from "lucide-react"
@@ -477,13 +478,15 @@ export function Nav() {
         )}
       </nav>
       {/* Floating logo moved out of header: clickable, fixed on page just below the header */}
-      <button onClick={() => setLogoOpen(true)} aria-label="Open logo preview"
-        className="fixed left-6 z-50"
-        style={{ top: 'calc(4rem + 0.4rem)', width: '3in', height: '3in', padding: 0 }}>
-        <div style={{ width: '3in', height: '3in', position: 'relative' }} className="overflow-hidden">
-          <Image src="/My_Logo.png" alt="Junaid Khan logo" fill className="object-contain" />
-        </div>
-      </button>
+      {usePathname() === "/" && (
+        <button onClick={() => setLogoOpen(true)} aria-label="Open logo preview"
+          className="fixed z-50"
+          style={{ top: 'calc(4rem + 0.25rem)', left: '1.5rem', width: '6in', height: '6in', padding: 0 }}>
+          <div style={{ width: '6in', height: '6in', position: 'relative' }} className="overflow-hidden">
+            <Image src="/My_Logo.png" alt="Junaid Khan logo" fill className="object-contain" />
+          </div>
+        </button>
+      )}
     </>
   )
 }
