@@ -64,7 +64,7 @@ export default function Hero() {
         <div className="grid lg:grid-cols-1 gap-8 lg:gap-12 items-start justify-items-end min-h-[85vh]">
 
           {/* ── MAIN CONTENT ── */}
-          <div className="order-2 lg:order-1 flex flex-col justify-center space-y-7 max-w-4xl lg:pr-8 xl:pr-12 lg:translate-x-20 xl:translate-x-24 items-start text-left">
+          <div className="order-2 lg:order-1 flex flex-col justify-center space-y-7 max-w-4xl lg:pr-8 xl:pr-12 lg:translate-x-28 xl:translate-x-32 items-start text-left">
 
             {/* Status pill */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
