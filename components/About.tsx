@@ -1,5 +1,5 @@
 "use client"
-import { useRef } from "react"
+import { useRef, useState, type PointerEvent } from "react"
 import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { MapPin, GraduationCap, Globe, Target, Lightbulb, TrendingUp, Zap, Code2, BarChart3, Database, Award, BookOpen, Clock } from "lucide-react"
@@ -61,7 +61,31 @@ function OrbitDiagram({ isInView, size = 380 }: { isInView: boolean; size?: numb
 
 export function About() {
   const ref = useRef(null)
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 })
+  const [isDragging, setIsDragging] = useState(false)
+  const dragOrigin = useRef({ x: 0, y: 0 })
+  const dragStart = useRef({ x: 0, y: 0 })
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+
+  const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    event.currentTarget.setPointerCapture(event.pointerId)
+    setIsDragging(true)
+    dragOrigin.current = { x: event.clientX, y: event.clientY }
+    dragStart.current = { x: dragOffset.x, y: dragOffset.y }
+  }
+
+  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    if (!isDragging) return
+    const dx = event.clientX - dragOrigin.current.x
+    const dy = event.clientY - dragOrigin.current.y
+    setDragOffset({ x: dragStart.current.x + dx, y: dragStart.current.y + dy })
+  }
+
+  const handlePointerUp = (event: PointerEvent<HTMLDivElement>) => {
+    if (!isDragging) return
+    setIsDragging(false)
+    event.currentTarget.releasePointerCapture(event.pointerId)
+  }
 
   return (
     <section id="about" ref={ref} className="py-16 relative">
@@ -140,8 +164,13 @@ export function About() {
                 <Image src="/For_About.png" alt="Junaid Khan about image" fill className="object-cover object-center" priority />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117]/80 via-transparent to-transparent" />
               </div>
-              <div className="absolute bottom-8 left-8 hidden lg:block">
-                <OrbitDiagram isInView={isInView} size={240} />
+              <div className="absolute bottom-8 left-8 hidden lg:block"
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
+                onPointerCancel={handlePointerUp}
+                style={{ transform: `translate(${dragOffset.x}px, ${dragOffset.y}px)`, cursor: isDragging ? 'grabbing' : 'grab', touchAction: 'none' }}>
+                <OrbitDiagram isInView={isInView} size={270} />
               </div>
             </div>
           </motion.div>
