@@ -15,18 +15,20 @@ const orbitItems = [
   { label: "Problem Solver", icon: Lightbulb, color: "#a78bfa", angle: 315 },
 ]
 
-function OrbitDiagram({ isInView }: { isInView: boolean }) {
-  const radius = 148
+function OrbitDiagram({ isInView, size = 380 }: { isInView: boolean; size?: number }) {
+  const radius = (size - 84) / 2
+  const center = size / 2
   return (
-    <div className="relative w-[380px] h-[380px] mx-auto select-none">
+    <div className="relative mx-auto select-none" style={{ width: size, height: size }}>
       {[0, 1, 2].map(i => (
         <motion.div key={i} className="absolute rounded-full border border-cyan-500/10"
-          style={{ inset: `${i * 26}px` }}
+          style={{ inset: `${Math.round(i * (size / 14))}px` }}
           animate={{ rotate: i % 2 === 0 ? 360 : -360 }}
           transition={{ duration: 28 + i * 14, repeat: Infinity, ease: "linear" }} />
       ))}
       {/* Center */}
-      <div className="absolute inset-[94px] glass rounded-full border border-[#30363d] flex flex-col items-center justify-center text-center z-10">
+      <div className="absolute glass rounded-full border border-[#30363d] flex flex-col items-center justify-center text-center z-10"
+        style={{ inset: `${Math.round(center - 96)}px` }}>
         <p className="text-4xl font-black text-cyan-400">7+</p>
         <p className="text-[10px] text-slate-500 leading-tight">Analytics<br />Projects</p>
         <div className="w-px h-3 bg-cyan-500/30 my-1" />
@@ -35,8 +37,8 @@ function OrbitDiagram({ isInView }: { isInView: boolean }) {
       </div>
       {orbitItems.map((item, i) => {
         const rad = (item.angle * Math.PI) / 180
-        const x = 190 + radius * Math.cos(rad) - 46
-        const y = 190 + radius * Math.sin(rad) - 18
+        const x = center + radius * Math.cos(rad) - 46
+        const y = center + radius * Math.sin(rad) - 18
         return (
           <motion.div key={item.label}
             initial={{ opacity: 0, scale: 0.5 }} animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -132,13 +134,15 @@ export function About() {
 
           {/* Image + visuals */}
           <motion.div initial={{ opacity: 0, x: -40 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.7 }}
-            className="flex items-center justify-end gap-6">
-            <div className="hidden lg:block">
-              <OrbitDiagram isInView={isInView} />
-            </div>
-            <div className="relative w-full max-w-md aspect-[4/5] rounded-[32px] overflow-hidden border border-[#30363d] shadow-2xl bg-[#0d1117]">
-              <Image src="/For_About.png" alt="Junaid Khan about image" fill className="object-cover object-center" priority />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117]/80 via-transparent to-transparent" />
+            className="relative w-full flex items-center justify-end">
+            <div className="relative w-full max-w-3xl">
+              <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden border border-[#30363d] shadow-2xl bg-[#0d1117]">
+                <Image src="/For_About.png" alt="Junaid Khan about image" fill className="object-cover object-center" priority />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117]/80 via-transparent to-transparent" />
+              </div>
+              <div className="absolute top-8 right-8 hidden lg:block">
+                <OrbitDiagram isInView={isInView} size={240} />
+              </div>
             </div>
           </motion.div>
         </div>
