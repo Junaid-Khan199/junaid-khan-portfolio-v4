@@ -140,7 +140,7 @@ export function About() {
                 <Image src="/For_About.png" alt="Junaid Khan about image" fill className="object-cover object-center" priority />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117]/80 via-transparent to-transparent" />
               </div>
-              <div className="absolute top-8 right-8 hidden lg:block">
+              <div className="absolute bottom-8 left-8 hidden lg:block">
                 <OrbitDiagram isInView={isInView} size={240} />
               </div>
             </div>
