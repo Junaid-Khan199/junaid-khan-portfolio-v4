@@ -477,11 +477,11 @@ export function Nav() {
           </motion.div>
         )}
       </nav>
-      {/* Floating logo moved out of header: clickable, fixed on page just below the header */}
+      {/* Logo fixed at top-left corner of hero page only */}
       {usePathname() === "/" && (
         <button onClick={() => setLogoOpen(true)} aria-label="Open logo preview"
           className="fixed z-50"
-          style={{ top: '4.05rem', left: '0.1rem', width: '6in', height: '6in', padding: 0 }}>
+          style={{ top: '0.5rem', left: '0.1rem', width: '6in', height: '6in', padding: 0 }}>
           <div style={{ width: '6in', height: '6in', position: 'relative' }} className="overflow-hidden">
             <Image src="/My_Logo.png" alt="Junaid Khan logo" fill className="object-contain" />
           </div>
