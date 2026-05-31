@@ -481,7 +481,7 @@ export function Nav() {
       {usePathname() === "/" && (
         <button onClick={() => setLogoOpen(true)} aria-label="Open logo preview"
           className="fixed z-50"
-          style={{ top: '4.5rem', left: '1.5rem', width: '6in', height: '6in', padding: 0 }}>
+          style={{ top: '4.05rem', left: '0.1rem', width: '6in', height: '6in', padding: 0 }}>
           <div style={{ width: '6in', height: '6in', position: 'relative' }} className="overflow-hidden">
             <Image src="/My_Logo.png" alt="Junaid Khan logo" fill className="object-contain" />
           </div>
