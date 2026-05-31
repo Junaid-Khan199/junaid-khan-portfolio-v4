@@ -479,60 +479,61 @@ export function Nav() {
           </motion.div>
         )}
       </nav>
-      )
+    </>
+  )
 }
 
-      // ── FOOTER ─────────────────────────────────────────────────────────
-      export function Footer() {
+// ── FOOTER ─────────────────────────────────────────────────────────
+export function Footer() {
   return (
-      <footer className="border-t border-[#30363d] py-10">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-            <div className="col-span-2 md:col-span-1">
-              <div className="flex items-center gap-2.5 mb-3">
-                <div className="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
-                  <BarChart3 className="w-4 h-4 text-cyan-400" />
-                </div>
-                <span className="font-bold"><span className="text-cyan-400">Junaid</span><span className="text-white">Khan</span></span>
+    <footer className="border-t border-[#30363d] py-10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+          <div className="col-span-2 md:col-span-1">
+            <div className="flex items-center gap-2.5 mb-3">
+              <div className="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
+                <BarChart3 className="w-4 h-4 text-cyan-400" />
               </div>
-              <p className="text-xs text-slate-500 max-w-[220px] leading-relaxed mb-4">Data Analyst transforming raw data into actionable business insights. Open to GCC & remote roles.</p>
-              <div className="flex gap-2">
-                {[{ icon: Github, href: "https://github.com/Junaid-Khan199" }, { icon: Linkedin, href: "https://www.linkedin.com/in/junaid-khan-199j" }, { icon: Mail, href: "mailto:junaidkhaan455@gmail.com" }].map((s, i) => (
-                  <a key={i} href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-lg glass border border-[#30363d] flex items-center justify-center text-slate-500 hover:text-cyan-400 hover:border-cyan-500/40 transition-all">
-                    <s.icon className="w-4 h-4" />
-                  </a>
-                ))}
-              </div>
+              <span className="font-bold"><span className="text-cyan-400">Junaid</span><span className="text-white">Khan</span></span>
             </div>
-            {[
-              { title: "Navigate", links: [["About", "#about"], ["Skills", "#skills"], ["Projects", "#projects"], ["Dashboard", "#dashboard"]] },
-              { title: "Tools", links: [["SQL Runner", "#sql"], ["Python Lab", "#python"], ["Resume", "#resume"], ["Contact", "#contact"]] },
-              { title: "Contact", links: [["junaidkhaan455@gmail.com", "mailto:junaidkhaan455@gmail.com"], ["GitHub", "https://github.com/Junaid-Khan199"], ["LinkedIn", "https://www.linkedin.com/in/junaid-khan-199j"]] },
-            ].map(col => (
-              <div key={col.title}>
-                <h4 className="text-sm font-bold text-white mb-3">{col.title}</h4>
-                <ul className="space-y-2">
-                  {col.links.map(([label, href]) => (
-                    <li key={label}>
-                      <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
-                        className="text-xs text-slate-500 hover:text-cyan-400 transition-colors truncate block">
-                        {label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            <p className="text-xs text-slate-500 max-w-[220px] leading-relaxed mb-4">Data Analyst transforming raw data into actionable business insights. Open to GCC & remote roles.</p>
+            <div className="flex gap-2">
+              {[{ icon: Github, href: "https://github.com/Junaid-Khan199" }, { icon: Linkedin, href: "https://www.linkedin.com/in/junaid-khan-199j" }, { icon: Mail, href: "mailto:junaidkhaan455@gmail.com" }].map((s, i) => (
+                <a key={i} href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-lg glass border border-[#30363d] flex items-center justify-center text-slate-500 hover:text-cyan-400 hover:border-cyan-500/40 transition-all">
+                  <s.icon className="w-4 h-4" />
+                </a>
+              ))}
+            </div>
           </div>
-          <div className="flex items-center justify-between pt-6 border-t border-[#30363d]">
-            <p className="text-xs text-slate-600">© 2026 Junaid Khan · Data Analyst · All rights reserved.</p>
-            <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="w-9 h-9 rounded-lg glass border border-[#30363d] flex items-center justify-center text-slate-500 hover:text-cyan-400 hover:border-cyan-500/40 transition-all">
-              <ArrowUp className="w-4 h-4" />
-            </button>
-          </div>
+          {[
+            { title: "Navigate", links: [["About", "#about"], ["Skills", "#skills"], ["Projects", "#projects"], ["Dashboard", "#dashboard"]] },
+            { title: "Tools", links: [["SQL Runner", "#sql"], ["Python Lab", "#python"], ["Resume", "#resume"], ["Contact", "#contact"]] },
+            { title: "Contact", links: [["junaidkhaan455@gmail.com", "mailto:junaidkhaan455@gmail.com"], ["GitHub", "https://github.com/Junaid-Khan199"], ["LinkedIn", "https://www.linkedin.com/in/junaid-khan-199j"]] },
+          ].map(col => (
+            <div key={col.title}>
+              <h4 className="text-sm font-bold text-white mb-3">{col.title}</h4>
+              <ul className="space-y-2">
+                {col.links.map(([label, href]) => (
+                  <li key={label}>
+                    <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
+                      className="text-xs text-slate-500 hover:text-cyan-400 transition-colors truncate block">
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
-      </footer>
-      )
+        <div className="flex items-center justify-between pt-6 border-t border-[#30363d]">
+          <p className="text-xs text-slate-600">© 2026 Junaid Khan · Data Analyst · All rights reserved.</p>
+          <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="w-9 h-9 rounded-lg glass border border-[#30363d] flex items-center justify-center text-slate-500 hover:text-cyan-400 hover:border-cyan-500/40 transition-all">
+            <ArrowUp className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+    </footer>
+  )
 }
