@@ -443,7 +443,7 @@ export function Nav() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
           <motion.button type="button" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }} onClick={() => setLogoOpen(true)}
             className="flex-1 flex items-center gap-3 rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-500/50">
-            <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-cyan-500/25 bg-slate-950/70 flex items-center justify-center group-hover:border-cyan-400 transition-all">
+            <div className="relative w-14 h-14 rounded-2xl overflow-hidden border border-cyan-500/25 bg-slate-950/70 flex items-center justify-center group-hover:border-cyan-400 transition-all">
               <Image src="/My_Logo.png" alt="Junaid Khan logo" fill className="object-contain" />
             </div>
             <span className="font-bold text-base"><span className="text-cyan-400">Junaid</span><span className="text-white">Khan</span></span>
