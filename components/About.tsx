@@ -1,5 +1,5 @@
 "use client"
-import { useRef, useState, type PointerEvent } from "react"
+import { useRef } from "react"
 import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { MapPin, GraduationCap, Globe, Target, Lightbulb, TrendingUp, Zap, Code2, BarChart3, Database, Award, BookOpen, Clock } from "lucide-react"
@@ -15,77 +15,11 @@ const orbitItems = [
   { label: "Problem Solver", icon: Lightbulb, color: "#a78bfa", angle: 315 },
 ]
 
-function OrbitDiagram({ isInView, size = 380 }: { isInView: boolean; size?: number }) {
-  const radius = (size - 84) / 2
-  const center = size / 2
-  return (
-    <div className="relative mx-auto select-none" style={{ width: size, height: size }}>
-      {[0, 1, 2].map(i => (
-        <motion.div key={i} className="absolute rounded-full border border-cyan-500/10"
-          style={{ inset: `${Math.round(i * (size / 14))}px` }}
-          animate={{ rotate: i % 2 === 0 ? 360 : -360 }}
-          transition={{ duration: 28 + i * 14, repeat: Infinity, ease: "linear" }} />
-      ))}
-      {/* Center */}
-      <div className="absolute glass rounded-full border border-[#30363d] flex flex-col items-center justify-center text-center z-10"
-        style={{ inset: `${Math.round(center - 96)}px` }}>
-        <p className="text-4xl font-black text-cyan-400">7+</p>
-        <p className="text-[10px] text-slate-500 leading-tight">Analytics<br />Projects</p>
-        <div className="w-px h-3 bg-cyan-500/30 my-1" />
-        <p className="text-2xl font-black text-emerald-400">4+</p>
-        <p className="text-[10px] text-slate-500 leading-tight">Years<br />Experience</p>
-      </div>
-      {orbitItems.map((item, i) => {
-        const rad = (item.angle * Math.PI) / 180
-        const x = center + radius * Math.cos(rad) - 46
-        const y = center + radius * Math.sin(rad) - 18
-        return (
-          <motion.div key={item.label}
-            initial={{ opacity: 0, scale: 0.5 }} animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ delay: 0.15 + i * 0.08 }}
-            className="absolute glass rounded-xl px-2.5 py-1.5 border border-[#30363d] hover:border-cyan-500/40 transition-colors cursor-default"
-            style={{ left: x, top: y, zIndex: 20 }}
-            whileHover={{ scale: 1.12, zIndex: 30 }}>
-            <div className="flex items-center gap-1.5">
-              <div className="w-5 h-5 rounded flex items-center justify-center flex-shrink-0" style={{ background: `${item.color}22` }}>
-                <item.icon className="w-3 h-3" style={{ color: item.color }} />
-              </div>
-              <span className="text-[10px] font-semibold text-white whitespace-nowrap">{item.label}</span>
-            </div>
-          </motion.div>
-        )
-      })}
-    </div>
-  )
-}
 
 export function About() {
   const ref = useRef(null)
-  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 })
-  const [isDragging, setIsDragging] = useState(false)
-  const dragOrigin = useRef({ x: 0, y: 0 })
-  const dragStart = useRef({ x: 0, y: 0 })
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
-  const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
-    event.currentTarget.setPointerCapture(event.pointerId)
-    setIsDragging(true)
-    dragOrigin.current = { x: event.clientX, y: event.clientY }
-    dragStart.current = { x: dragOffset.x, y: dragOffset.y }
-  }
-
-  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
-    if (!isDragging) return
-    const dx = event.clientX - dragOrigin.current.x
-    const dy = event.clientY - dragOrigin.current.y
-    setDragOffset({ x: dragStart.current.x + dx, y: dragStart.current.y + dy })
-  }
-
-  const handlePointerUp = (event: PointerEvent<HTMLDivElement>) => {
-    if (!isDragging) return
-    setIsDragging(false)
-    event.currentTarget.releasePointerCapture(event.pointerId)
-  }
 
   return (
     <section id="about" ref={ref} className="py-16 relative">
@@ -163,14 +97,6 @@ export function About() {
               <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden border border-[#30363d] shadow-2xl bg-[#0d1117]">
                 <Image src="/For_About.png" alt="Junaid Khan about image" fill className="object-cover object-center" priority />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117]/80 via-transparent to-transparent" />
-              </div>
-              <div className="absolute bottom-8 left-8 hidden lg:block"
-                onPointerDown={handlePointerDown}
-                onPointerMove={handlePointerMove}
-                onPointerUp={handlePointerUp}
-                onPointerCancel={handlePointerUp}
-                style={{ transform: `translate(${dragOffset.x}px, ${dragOffset.y}px)`, cursor: isDragging ? 'grabbing' : 'grab', touchAction: 'none' }}>
-                <OrbitDiagram isInView={isInView} size={270} />
               </div>
             </div>
           </motion.div>
