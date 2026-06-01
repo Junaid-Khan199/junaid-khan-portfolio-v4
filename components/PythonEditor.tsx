@@ -9,6 +9,7 @@ import {
   FolderOpen, Settings, Maximize2, Minimize2, Lock,
   BarChart3
 } from "lucide-react"
+import { LogoCorner } from "./LogoCorner"
 
 const GITHUB_USER = "Junaid-Khan199"
 const STORAGE_KEY = "junaid_py_snippets_"
@@ -16,7 +17,8 @@ const STORAGE_KEY = "junaid_py_snippets_"
 // ── Built-in locked snippets per project ────────────────────────────────────
 const BUILTIN_SNIPPETS: Record<string, { title: string; code: string }[]> = {
   "oral-cancer-ml": [
-    { title: "Load & Preview Dataset", code: `# Load & Preview Dataset
+    {
+      title: "Load & Preview Dataset", code: `# Load & Preview Dataset
 import pandas as pd
 import numpy as np
 
@@ -28,7 +30,8 @@ print("\\nData types:")
 print(df.dtypes)
 print("\\nMissing values:")
 print(df.isnull().sum())` },
-    { title: "Descriptive Statistics", code: `# Descriptive Statistics
+    {
+      title: "Descriptive Statistics", code: `# Descriptive Statistics
 import pandas as pd
 
 df = pd.read_csv('oral_cancer_dataset.csv')
@@ -36,7 +39,8 @@ print("Summary Statistics:")
 print(df.describe())
 print("\\nCancer rate by tobacco use:")
 print(df.groupby('tobacco_use')['cancer_diagnosis'].mean().round(4))` },
-    { title: "ML Model — Random Forest", code: `# ML Model — Random Forest (97% Accuracy)
+    {
+      title: "ML Model — Random Forest", code: `# ML Model — Random Forest (97% Accuracy)
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
@@ -59,7 +63,8 @@ print(classification_report(y_test, preds))
 print("\\nTop 3 Features:")
 for feat, imp in sorted(zip(features, model.feature_importances_), key=lambda x:-x[1])[:3]:
     print(f"  {feat}: {imp:.4f}")` },
-    { title: "Survival Analysis", code: `# Survival Analysis by Tumor Stage
+    {
+      title: "Survival Analysis", code: `# Survival Analysis by Tumor Stage
 import pandas as pd
 
 df = pd.read_csv('oral_cancer_dataset.csv')
@@ -72,7 +77,8 @@ print("Survival Analysis by Stage:")
 print(survival.to_string())` },
   ],
   "saudi-retail": [
-    { title: "Load & Preview Dataset", code: `# Load Saudi Retail Dataset
+    {
+      title: "Load & Preview Dataset", code: `# Load Saudi Retail Dataset
 import pandas as pd
 import numpy as np
 
@@ -81,7 +87,8 @@ print("Shape:", df.shape)
 print("\\nColumns:", list(df.columns))
 print("\\nFirst 5 rows:")
 print(df.head())` },
-    { title: "Revenue Analysis", code: `# Revenue & Profit Analysis
+    {
+      title: "Revenue Analysis", code: `# Revenue & Profit Analysis
 import pandas as pd
 
 df = pd.read_excel('saudi_retail_dataset.xlsx')
@@ -94,7 +101,8 @@ print("Monthly Revenue Summary (SAR):")
 print(monthly.to_string())
 print(f"\\nTotal Gross Sales: {df['gross_sales'].sum():,.2f}")
 print(f"Total Orders: {len(df):,}")` },
-    { title: "Category Performance", code: `# Category Performance Analysis
+    {
+      title: "Category Performance", code: `# Category Performance Analysis
 import pandas as pd
 
 df = pd.read_excel('saudi_retail_dataset.xlsx')
@@ -107,7 +115,8 @@ print("Category Performance:")
 print(cat.to_string())` },
   ],
   "superstore": [
-    { title: "Load & Preview Dataset", code: `# Load Superstore Dataset
+    {
+      title: "Load & Preview Dataset", code: `# Load Superstore Dataset
 import pandas as pd
 
 df = pd.read_csv('superstore_sales.csv')
@@ -115,7 +124,8 @@ print("Shape:", df.shape)
 print("\\nFirst 5 rows:")
 print(df.head())
 print("\\nSegments:", df['Segment'].unique())` },
-    { title: "Profit Analysis", code: `# Profit & Loss by Sub-Category
+    {
+      title: "Profit Analysis", code: `# Profit & Loss by Sub-Category
 import pandas as pd
 
 df = pd.read_csv('superstore_sales.csv')
@@ -130,7 +140,8 @@ print("\\nLoss-Making:")
 print(result[result['Profit']<0])` },
   ],
   "fish-market": [
-    { title: "Load & Preview Dataset", code: `# Load Fish Market Survey Data
+    {
+      title: "Load & Preview Dataset", code: `# Load Fish Market Survey Data
 import pandas as pd
 
 df = pd.read_csv('fish_market_survey.csv')
@@ -138,7 +149,8 @@ print("Shape:", df.shape)
 print("\\nFirst 5 rows:")
 print(df.head())
 print("\\nBuying reasons:", df['buying_reason'].value_counts())` },
-    { title: "Chi-Square Test", code: `# Chi-Square Test — Education vs Buying Reason
+    {
+      title: "Chi-Square Test", code: `# Chi-Square Test — Education vs Buying Reason
 from scipy.stats import chi2_contingency
 import pandas as pd
 
@@ -150,7 +162,8 @@ print(f"  Chi2 Statistic : {chi2:.4f}")
 print(f"  P-value        : {p:.6f}")
 print(f"  Degrees of Freedom: {dof}")
 print(f"\\nSignificant difference: {'YES (p < 0.05)' if p < 0.05 else 'NO'}")` },
-    { title: "ANOVA Analysis", code: `# One-Way ANOVA — Income vs Purchase Freq
+    {
+      title: "ANOVA Analysis", code: `# One-Way ANOVA — Income vs Purchase Freq
 from scipy.stats import f_oneway
 import pandas as pd
 
@@ -165,7 +178,7 @@ print(f"  Result      : {'Significant difference (p < 0.05)' if p_value < 0.05 e
 }
 
 function getBuiltins(pid: string) {
-  const found = Object.entries(BUILTIN_SNIPPETS).find(([k]) => pid.toLowerCase().replace(/-/g,"").includes(k.replace(/-/g,"")))
+  const found = Object.entries(BUILTIN_SNIPPETS).find(([k]) => pid.toLowerCase().replace(/-/g, "").includes(k.replace(/-/g, "")))
   return found?.[1] ?? [
     { title: "Load Dataset", code: `# Load Dataset\nimport pandas as pd\n\ndf = pd.read_csv('dataset.csv')\nprint("Shape:", df.shape)\nprint("\\nFirst 5 rows:")\nprint(df.head())\nprint("\\nSummary:")\nprint(df.describe())` },
     { title: "Missing Values", code: `# Check Missing Values\nimport pandas as pd\n\ndf = pd.read_csv('dataset.csv')\nprint("Missing values per column:")\nprint(df.isnull().sum())\nprint(f"\\nTotal missing: {df.isnull().sum().sum()}")` },
@@ -190,10 +203,10 @@ function colorLine(line: string): string {
 export default function PythonEditor() {
   const [activeProject, setActiveProject] = useState(projects[1] ?? projects[0])
   const [savedSnippets, setSavedSnippets] = useState<{ title: string; code: string }[]>([])
-  const [activeIdx, setActiveIdx] = useState<{ type: "builtin"|"saved"; idx: number }>({ type:"builtin", idx:0 })
+  const [activeIdx, setActiveIdx] = useState<{ type: "builtin" | "saved"; idx: number }>({ type: "builtin", idx: 0 })
   const [editorCode, setEditorCode] = useState("")
-  const [tempCode, setTempCode] = useState<string|null>(null)
-  const [output, setOutput] = useState<string|null>(null)
+  const [tempCode, setTempCode] = useState<string | null>(null)
+  const [output, setOutput] = useState<string | null>(null)
   const [running, setRunning] = useState(false)
   const [copied, setCopied] = useState(false)
   const [saveModal, setSaveModal] = useState(false)
@@ -217,7 +230,7 @@ export default function PythonEditor() {
 
   // Set editor from active snippet
   useEffect(() => {
-    const s = activeIdx.type==="builtin" ? builtins[activeIdx.idx] : savedSnippets[activeIdx.idx]
+    const s = activeIdx.type === "builtin" ? builtins[activeIdx.idx] : savedSnippets[activeIdx.idx]
     if (s) { setEditorCode(s.code); setTempCode(null); setOutput(null) }
   }, [activeIdx, activeProject.id])
 
@@ -229,14 +242,14 @@ export default function PythonEditor() {
     setRunning(true); setOutput(null)
     try {
       const res = await fetch("/api/run-python", {
-        method:"POST", headers:{"Content-Type":"application/json"},
-        body: JSON.stringify({ projectId: activeProject.id, snippetIdx: activeIdx.type==="builtin"?activeIdx.idx:0, customCode: isDirty?currentCode:undefined })
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ projectId: activeProject.id, snippetIdx: activeIdx.type === "builtin" ? activeIdx.idx : 0, customCode: isDirty ? currentCode : undefined })
       })
       const payload = await res.json()
       if (payload?.error) setOutput(`Traceback (most recent call last):\n  ...\n${payload.error}`)
-      else setOutput(payload?.output ?? getPythonOutput(activeProject.id, activeIdx.type==="builtin"?activeIdx.idx:0))
+      else setOutput(payload?.output ?? getPythonOutput(activeProject.id, activeIdx.type === "builtin" ? activeIdx.idx : 0))
     } catch {
-      setOutput(getPythonOutput(activeProject.id, activeIdx.type==="builtin"?activeIdx.idx:0))
+      setOutput(getPythonOutput(activeProject.id, activeIdx.type === "builtin" ? activeIdx.idx : 0))
     } finally { setRunning(false) }
   }
 
@@ -246,36 +259,36 @@ export default function PythonEditor() {
       e.preventDefault()
       const ta = textareaRef.current!
       const start = ta.selectionStart; const end = ta.selectionEnd
-      const newVal = currentCode.slice(0,start) + "    " + currentCode.slice(end)
+      const newVal = currentCode.slice(0, start) + "    " + currentCode.slice(end)
       setTempCode(newVal)
       setTimeout(() => { ta.selectionStart = ta.selectionEnd = start + 4 }, 0)
     }
     // Ctrl+Enter → run
-    if ((e.ctrlKey||e.metaKey) && e.key==="Enter") { e.preventDefault(); runCode() }
+    if ((e.ctrlKey || e.metaKey) && e.key === "Enter") { e.preventDefault(); runCode() }
     // Ctrl+S → save modal
-    if ((e.ctrlKey||e.metaKey) && e.key==="s") { e.preventDefault(); if(isDirty) setSaveModal(true) }
+    if ((e.ctrlKey || e.metaKey) && e.key === "s") { e.preventDefault(); if (isDirty) setSaveModal(true) }
   }
 
   const saveSnippet = () => {
     if (!currentCode.trim()) return
-    const title = saveTitle.trim() || `Custom ${savedSnippets.length+1}`
+    const title = saveTitle.trim() || `Custom ${savedSnippets.length + 1}`
     const updated = [...savedSnippets, { title, code: currentCode }]
     setSavedSnippets(updated)
-    try { localStorage.setItem(STORAGE_KEY+activeProject.id, JSON.stringify(updated)) } catch {}
-    setActiveIdx({ type:"saved", idx: updated.length-1 })
+    try { localStorage.setItem(STORAGE_KEY + activeProject.id, JSON.stringify(updated)) } catch { }
+    setActiveIdx({ type: "saved", idx: updated.length - 1 })
     setSaveModal(false); setSaveTitle("")
   }
 
   const deleteSaved = (idx: number) => {
-    const updated = savedSnippets.filter((_,i)=>i!==idx)
+    const updated = savedSnippets.filter((_, i) => i !== idx)
     setSavedSnippets(updated)
-    try { localStorage.setItem(STORAGE_KEY+activeProject.id, JSON.stringify(updated)) } catch {}
-    setActiveIdx({ type:"builtin", idx:0 })
+    try { localStorage.setItem(STORAGE_KEY + activeProject.id, JSON.stringify(updated)) } catch { }
+    setActiveIdx({ type: "builtin", idx: 0 })
   }
 
   const toggleFullscreen = useCallback(async () => {
-    if (!isFullscreen) { try { await editorRef.current?.requestFullscreen(); } catch {} setIsFullscreen(true) }
-    else { try { await document.exitFullscreen(); } catch {} setIsFullscreen(false) }
+    if (!isFullscreen) { try { await editorRef.current?.requestFullscreen(); } catch { } setIsFullscreen(true) }
+    else { try { await document.exitFullscreen(); } catch { } setIsFullscreen(false) }
   }, [isFullscreen])
 
   useEffect(() => {
@@ -289,30 +302,30 @@ export default function PythonEditor() {
 
   return (
     <section id="python" ref={ref} className="py-16 relative">
-      <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none"/>
+      <LogoCorner />
+      <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
 
         {/* Header */}
-        <motion.div initial={{opacity:0,y:30}} animate={isInView?{opacity:1,y:0}:{}} className="text-center mb-10">
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} className="text-center mb-10">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="h-px w-12 bg-violet-500"/>
+            <div className="h-px w-12 bg-violet-500" />
             <span className="text-xs uppercase tracking-widest text-violet-400 font-semibold">Python Lab</span>
-            <div className="h-px w-12 bg-violet-500"/>
+            <div className="h-px w-12 bg-violet-500" />
           </div>
           <h2 className="text-4xl sm:text-5xl font-black text-white mb-4">
-            VS Code–Style <span className="text-transparent bg-clip-text" style={{backgroundImage:"linear-gradient(135deg,#8b5cf6,#22d3ee)"}}>Python Editor</span>
+            VS Code–Style <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg,#8b5cf6,#22d3ee)" }}>Python Editor</span>
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto text-sm">Full code editor with real dataset snippets. Tab to indent, Ctrl+Enter to run, Ctrl+S to save.</p>
         </motion.div>
 
         {/* Project selector */}
-        <motion.div initial={{opacity:0,y:20}} animate={isInView?{opacity:1,y:0}:{}} transition={{delay:0.1}}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.1 }}
           className="flex flex-wrap gap-2 mb-5">
           {projects.map(p => (
-            <button key={p.id} onClick={()=>{setActiveProject(p);setActiveIdx({type:"builtin",idx:0})}}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-semibold border transition-all ${
-                activeProject.id===p.id?"text-[#0d1117] border-transparent":"glass border-[#30363d] text-slate-400 hover:text-white hover:border-violet-500/40"}`}
-              style={activeProject.id===p.id?{background:`linear-gradient(135deg,${p.accentColor},${p.accentColor}bb)`}:{}}>
+            <button key={p.id} onClick={() => { setActiveProject(p); setActiveIdx({ type: "builtin", idx: 0 }) }}
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-semibold border transition-all ${activeProject.id === p.id ? "text-[#0d1117] border-transparent" : "glass border-[#30363d] text-slate-400 hover:text-white hover:border-violet-500/40"}`}
+              style={activeProject.id === p.id ? { background: `linear-gradient(135deg,${p.accentColor},${p.accentColor}bb)` } : {}}>
               <span>{p.emoji}</span><span className="hidden sm:inline">{p.shortTitle}</span>
             </button>
           ))}
@@ -327,26 +340,26 @@ export default function PythonEditor() {
           <div className="flex items-center justify-between px-4 py-2 bg-[#1e1e2e] border-b border-[#30363d] flex-shrink-0">
             <div className="flex items-center gap-3">
               <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-500/80"/>
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80"/>
-                <div className="w-3 h-3 rounded-full bg-green-500/80"/>
+                <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                <div className="w-3 h-3 rounded-full bg-green-500/80" />
               </div>
               <div className="flex items-center gap-2 text-xs text-slate-400">
-                <Code2 className="w-3.5 h-3.5 text-violet-400"/>
+                <Code2 className="w-3.5 h-3.5 text-violet-400" />
                 <span className="text-slate-500">{activeProject.shortTitle} /</span>
-                <span className="text-white">{activeIdx.type==="builtin" ? builtins[activeIdx.idx]?.title.replace(/\s+/g,"_").toLowerCase() : savedSnippets[activeIdx.idx]?.title.replace(/\s+/g,"_").toLowerCase()}.py</span>
-                {isDirty && <span className="w-1.5 h-1.5 rounded-full bg-amber-400"/>}
+                <span className="text-white">{activeIdx.type === "builtin" ? builtins[activeIdx.idx]?.title.replace(/\s+/g, "_").toLowerCase() : savedSnippets[activeIdx.idx]?.title.replace(/\s+/g, "_").toLowerCase()}.py</span>
+                {isDirty && <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />}
               </div>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-[10px] text-slate-600 hidden sm:inline">Ln {lineCount} · Python 3.11</span>
               {isDirty && (
-                <button onClick={()=>setSaveModal(true)} className="flex items-center gap-1 px-2.5 py-1 rounded text-xs text-violet-400 hover:bg-violet-500/10 transition-all border border-violet-500/30">
-                  <Save className="w-3 h-3"/> Save
+                <button onClick={() => setSaveModal(true)} className="flex items-center gap-1 px-2.5 py-1 rounded text-xs text-violet-400 hover:bg-violet-500/10 transition-all border border-violet-500/30">
+                  <Save className="w-3 h-3" /> Save
                 </button>
               )}
               <button onClick={toggleFullscreen} className="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:text-white hover:bg-white/5 transition-all">
-                {isFullscreen ? <Minimize2 className="w-3.5 h-3.5"/> : <Maximize2 className="w-3.5 h-3.5"/>}
+                {isFullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
               </button>
             </div>
           </div>
@@ -357,7 +370,7 @@ export default function PythonEditor() {
             {/* ── Sidebar: file/snippet explorer ── */}
             <div className="w-52 flex-shrink-0 bg-[#1e1e2e] border-r border-[#30363d] flex flex-col overflow-hidden">
               <div className="px-3 py-2 border-b border-[#30363d] flex items-center gap-2">
-                <FolderOpen className="w-3.5 h-3.5 text-slate-500"/>
+                <FolderOpen className="w-3.5 h-3.5 text-slate-500" />
                 <span className="text-[10px] text-slate-500 uppercase tracking-wider">Explorer</span>
               </div>
 
@@ -366,15 +379,14 @@ export default function PythonEditor() {
                 {/* Built-in snippets */}
                 <div className="px-2 py-1.5">
                   <div className="flex items-center gap-1 text-[10px] text-slate-600 uppercase tracking-wider mb-1 px-1">
-                    <Lock className="w-2.5 h-2.5"/> Built-in
+                    <Lock className="w-2.5 h-2.5" /> Built-in
                   </div>
                   {builtins.map((s, i) => (
-                    <button key={i} onClick={()=>setActiveIdx({type:"builtin",idx:i})}
-                      className={`w-full text-left flex items-center gap-2 px-2 py-1.5 rounded text-xs transition-all ${
-                        activeIdx.type==="builtin"&&activeIdx.idx===i
+                    <button key={i} onClick={() => setActiveIdx({ type: "builtin", idx: i })}
+                      className={`w-full text-left flex items-center gap-2 px-2 py-1.5 rounded text-xs transition-all ${activeIdx.type === "builtin" && activeIdx.idx === i
                           ? "bg-[#2d2d3e] text-white"
                           : "text-slate-500 hover:text-white hover:bg-[#2a2a3e]"
-                      }`}>
+                        }`}>
                       <span className="text-violet-400 flex-shrink-0">🐍</span>
                       <span className="truncate leading-snug">{s.title}</span>
                     </button>
@@ -385,22 +397,21 @@ export default function PythonEditor() {
                 {savedSnippets.length > 0 && (
                   <div className="px-2 py-1.5 border-t border-[#30363d] mt-1">
                     <div className="flex items-center gap-1 text-[10px] text-slate-600 uppercase tracking-wider mb-1 px-1">
-                      <Save className="w-2.5 h-2.5"/> Saved
+                      <Save className="w-2.5 h-2.5" /> Saved
                     </div>
                     {savedSnippets.map((s, i) => (
                       <div key={i} className="relative group">
-                        <button onClick={()=>setActiveIdx({type:"saved",idx:i})}
-                          className={`w-full text-left flex items-center gap-2 px-2 py-1.5 rounded text-xs transition-all pr-7 ${
-                            activeIdx.type==="saved"&&activeIdx.idx===i
+                        <button onClick={() => setActiveIdx({ type: "saved", idx: i })}
+                          className={`w-full text-left flex items-center gap-2 px-2 py-1.5 rounded text-xs transition-all pr-7 ${activeIdx.type === "saved" && activeIdx.idx === i
                               ? "bg-[#2d2d3e] text-white"
                               : "text-slate-500 hover:text-white hover:bg-[#2a2a3e]"
-                          }`}>
+                            }`}>
                           <span className="text-emerald-400 flex-shrink-0">📄</span>
                           <span className="truncate">{s.title}</span>
                         </button>
-                        <button onClick={()=>deleteSaved(i)}
+                        <button onClick={() => deleteSaved(i)}
                           className="absolute right-1.5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-slate-600 hover:text-red-400 transition-all">
-                          <X className="w-3 h-3"/>
+                          <X className="w-3 h-3" />
                         </button>
                       </div>
                     ))}
@@ -465,24 +476,24 @@ export default function PythonEditor() {
                 <div className="ml-auto flex items-center gap-2">
                   {isDirty && (
                     <button onClick={() => setTempCode(null)} className="text-xs text-slate-500 hover:text-white transition-colors flex items-center gap-1">
-                      <X className="w-3 h-3"/> Reset
+                      <X className="w-3 h-3" /> Reset
                     </button>
                   )}
-                  <button onClick={() => { navigator.clipboard.writeText(currentCode); setCopied(true); setTimeout(()=>setCopied(false),2000) }}
+                  <button onClick={() => { navigator.clipboard.writeText(currentCode); setCopied(true); setTimeout(() => setCopied(false), 2000) }}
                     className="flex items-center gap-1 px-2.5 py-1 rounded text-xs text-slate-500 hover:text-white glass border border-[#30363d] transition-all">
-                    {copied ? <Check className="w-3 h-3 text-emerald-400"/> : <Copy className="w-3 h-3"/>}
+                    {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
                   </button>
-                  <button onClick={() => { setTempCode(""); setOutput(null); setTimeout(()=>textareaRef.current?.focus(),50) }}
+                  <button onClick={() => { setTempCode(""); setOutput(null); setTimeout(() => textareaRef.current?.focus(), 50) }}
                     className="flex items-center gap-1 px-2.5 py-1 rounded text-xs text-slate-500 hover:text-red-400 glass border border-[#30363d] transition-all">
-                    <Trash2 className="w-3 h-3"/> Clear
+                    <Trash2 className="w-3 h-3" /> Clear
                   </button>
                   {isChartCode(currentCode) && (
                     <span className="text-[10px] text-violet-400 hidden sm:inline">📊 Chart → popup</span>
                   )}
                   <button onClick={runCode} disabled={running}
                     className="flex items-center gap-1.5 px-5 py-1.5 rounded font-bold text-xs text-[#0d1117] transition-all disabled:opacity-60"
-                    style={{background:"linear-gradient(135deg,#8b5cf6,#22d3ee)"}}>
-                    {running ? <span className="w-3.5 h-3.5 border-2 border-[#0d1117]/30 border-t-[#0d1117] rounded-full animate-spin"/> : <Play className="w-3.5 h-3.5 fill-current"/>}
+                    style={{ background: "linear-gradient(135deg,#8b5cf6,#22d3ee)" }}>
+                    {running ? <span className="w-3.5 h-3.5 border-2 border-[#0d1117]/30 border-t-[#0d1117] rounded-full animate-spin" /> : <Play className="w-3.5 h-3.5 fill-current" />}
                     {running ? "Running…" : "▶ Run"}
                   </button>
                 </div>
@@ -492,9 +503,9 @@ export default function PythonEditor() {
               <div className={`flex flex-col border-t border-[#30363d] bg-[#0f0f1a] transition-all flex-shrink-0 ${terminalOpen ? "h-64" : "h-9"}`}>
                 {/* Terminal title bar */}
                 <div className="flex items-center justify-between px-4 py-2 border-b border-[#30363d] flex-shrink-0 cursor-pointer"
-                  onClick={()=>setTerminalOpen(p=>!p)}>
+                  onClick={() => setTerminalOpen(p => !p)}>
                   <div className="flex items-center gap-2">
-                    <Terminal className="w-3.5 h-3.5 text-violet-400"/>
+                    <Terminal className="w-3.5 h-3.5 text-violet-400" />
                     <span className="text-xs text-slate-400 font-semibold">Terminal</span>
                     {output && !running && (
                       <span className={`text-[10px] px-1.5 py-0.5 rounded font-semibold ${hasError ? "text-red-400 bg-red-500/10" : "text-emerald-400 bg-emerald-500/10"}`}>
@@ -514,11 +525,11 @@ export default function PythonEditor() {
                     {running && (
                       <div className="space-y-1">
                         <div className="flex items-center gap-2 text-xs text-slate-500 font-mono">
-                          <span className="w-3.5 h-3.5 border border-violet-500/30 border-t-violet-500 rounded-full animate-spin flex-shrink-0"/>
-                          python {activeIdx.type==="builtin"?builtins[activeIdx.idx]?.title.replace(/\s+/g,"_").toLowerCase():"custom"}.py
+                          <span className="w-3.5 h-3.5 border border-violet-500/30 border-t-violet-500 rounded-full animate-spin flex-shrink-0" />
+                          python {activeIdx.type === "builtin" ? builtins[activeIdx.idx]?.title.replace(/\s+/g, "_").toLowerCase() : "custom"}.py
                         </div>
-                        {["Importing libraries…","Loading dataset…","Executing script…"].map((m,i)=>(
-                          <motion.div key={m} initial={{opacity:0}} animate={{opacity:1}} transition={{delay:i*0.35}}
+                        {["Importing libraries…", "Loading dataset…", "Executing script…"].map((m, i) => (
+                          <motion.div key={m} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.35 }}
                             className="text-[11px] text-slate-600 font-mono pl-5">
                             {m}
                           </motion.div>
@@ -550,22 +561,22 @@ export default function PythonEditor() {
       {/* Save modal */}
       <AnimatePresence>
         {saveModal && (
-          <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-sm"
-            onClick={()=>setSaveModal(false)}>
-            <motion.div initial={{scale:0.9,opacity:0}} animate={{scale:1,opacity:1}} exit={{scale:0.9,opacity:0}}
-              onClick={e=>e.stopPropagation()}
+            onClick={() => setSaveModal(false)}>
+            <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
+              onClick={e => e.stopPropagation()}
               className="glass rounded-2xl p-6 border border-violet-500/30 w-full max-w-sm mx-4">
               <h3 className="font-bold text-white mb-1">Save Snippet</h3>
               <p className="text-xs text-slate-500 mb-4">Name your snippet to add it to the explorer.</p>
-              <input value={saveTitle} onChange={e=>setSaveTitle(e.target.value)} placeholder="My analysis…"
+              <input value={saveTitle} onChange={e => setSaveTitle(e.target.value)} placeholder="My analysis…"
                 className="w-full px-3.5 py-2.5 rounded-xl bg-[#21262d] border border-[#30363d] focus:border-violet-500/50 focus:outline-none text-white placeholder:text-slate-600 text-sm mb-4"
-                onKeyDown={e=>{if(e.key==="Enter")saveSnippet()}} autoFocus/>
+                onKeyDown={e => { if (e.key === "Enter") saveSnippet() }} autoFocus />
               <div className="flex gap-2">
                 <button onClick={saveSnippet}
                   className="flex-1 py-2.5 rounded-xl font-bold text-[#0d1117] text-sm"
-                  style={{background:"linear-gradient(135deg,#8b5cf6,#22d3ee)"}}>Save</button>
-                <button onClick={()=>setSaveModal(false)}
+                  style={{ background: "linear-gradient(135deg,#8b5cf6,#22d3ee)" }}>Save</button>
+                <button onClick={() => setSaveModal(false)}
                   className="px-4 py-2.5 rounded-xl glass border border-[#30363d] text-slate-400 hover:text-white text-sm">Cancel</button>
               </div>
             </motion.div>

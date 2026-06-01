@@ -1,21 +1,34 @@
 "use client"
 import { useRef, useState, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
+import { LogoCorner } from "./LogoCorner"
 
 // Base skill categories — static known skills
 const BASE_SKILL_CATEGORIES = [
-  { name: "Data Analysis", icon: "📊", color: "#22d3ee",
-    skills: [["Statistical Analysis",90],["Data Cleaning & ETL",95],["Exploratory Data Analysis",88],["Regression Analysis",85],["Hypothesis Testing",88]] },
-  { name: "Visualization & BI", icon: "📈", color: "#10b981",
-    skills: [["Power BI & DAX",88],["Dashboard Design",92],["Excel Charts & Pivot",95],["Matplotlib / Seaborn",82],["Power Query",90]] },
-  { name: "Databases & SQL", icon: "🗄️", color: "#f59e0b",
-    skills: [["SQL",88],["MySQL",85],["Query Optimisation",80],["Data Extraction",85],["SPSS",75]] },
-  { name: "Programming", icon: "💻", color: "#8b5cf6",
-    skills: [["Python",85],["Pandas",88],["NumPy",82],["Scikit-learn",78],["R (basics)",70]] },
-  { name: "Tools & Platforms", icon: "🛠", color: "#f43f5e",
-    skills: [["Excel (Advanced)",95],["Power Pivot",88],["GitHub",80],["Jupyter Notebook",85],["MS Office Suite",90]] },
-  { name: "Statistics & ML", icon: "🧪", color: "#06b6d4",
-    skills: [["Hypothesis Testing",88],["Time Series Analysis",78],["Forecasting",75],["ML Algorithms (7+)",80],["PCA",72]] },
+  {
+    name: "Data Analysis", icon: "📊", color: "#22d3ee",
+    skills: [["Statistical Analysis", 90], ["Data Cleaning & ETL", 95], ["Exploratory Data Analysis", 88], ["Regression Analysis", 85], ["Hypothesis Testing", 88]]
+  },
+  {
+    name: "Visualization & BI", icon: "📈", color: "#10b981",
+    skills: [["Power BI & DAX", 88], ["Dashboard Design", 92], ["Excel Charts & Pivot", 95], ["Matplotlib / Seaborn", 82], ["Power Query", 90]]
+  },
+  {
+    name: "Databases & SQL", icon: "🗄️", color: "#f59e0b",
+    skills: [["SQL", 88], ["MySQL", 85], ["Query Optimisation", 80], ["Data Extraction", 85], ["SPSS", 75]]
+  },
+  {
+    name: "Programming", icon: "💻", color: "#8b5cf6",
+    skills: [["Python", 85], ["Pandas", 88], ["NumPy", 82], ["Scikit-learn", 78], ["R (basics)", 70]]
+  },
+  {
+    name: "Tools & Platforms", icon: "🛠", color: "#f43f5e",
+    skills: [["Excel (Advanced)", 95], ["Power Pivot", 88], ["GitHub", 80], ["Jupyter Notebook", 85], ["MS Office Suite", 90]]
+  },
+  {
+    name: "Statistics & ML", icon: "🧪", color: "#06b6d4",
+    skills: [["Hypothesis Testing", 88], ["Time Series Analysis", 78], ["Forecasting", 75], ["ML Algorithms (7+)", 80], ["PCA", 72]]
+  },
 ]
 
 // Skill keyword → category map for GitHub auto-detection
@@ -110,6 +123,7 @@ export default function Skills() {
   // Tabs wrap into new row automatically (flex-wrap)
   return (
     <section id="skills" ref={ref} className="py-16 relative">
+      <LogoCorner />
       <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} className="text-center mb-10">
@@ -130,9 +144,8 @@ export default function Skills() {
           {skillCategories.map((c, i) => (
             <motion.button key={c.name} onClick={() => setActive(i)}
               whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all border ${
-                active === i ? "text-[#0d1117] border-transparent" : "glass border-[#30363d] text-slate-400 hover:text-white hover:border-cyan-500/30"
-              }`}
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all border ${active === i ? "text-[#0d1117] border-transparent" : "glass border-[#30363d] text-slate-400 hover:text-white hover:border-cyan-500/30"
+                }`}
               style={active === i ? { background: `linear-gradient(135deg, ${c.color}, ${c.color}bb)` } : {}}>
               <span>{c.icon}</span><span>{c.name}</span>
             </motion.button>

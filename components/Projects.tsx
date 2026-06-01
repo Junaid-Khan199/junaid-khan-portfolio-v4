@@ -3,16 +3,17 @@ import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence, useInView } from "framer-motion"
 import { projects as localProjects } from "@/data/projects"
 import { Github, ExternalLink, ChevronRight, Star, Filter, RefreshCw } from "lucide-react"
+import { LogoCorner } from "./LogoCorner"
 
 const GITHUB_USER = "Junaid-Khan199"
 
 // Detect category from repo topics/language
 function detectCategory(topics: string[], language: string): string {
   const t = [...topics, language.toLowerCase()]
-  if (t.some(x => ["power-bi","powerbi","dax","pbix"].includes(x))) return "Power BI"
-  if (t.some(x => ["python","jupyter","pandas","scikit-learn","ml","machine-learning"].includes(x))) return "Python"
-  if (t.some(x => ["sql","mysql","postgresql","sqlite"].includes(x))) return "SQL"
-  if (t.some(x => ["excel","xlsx","spreadsheet","vba"].includes(x))) return "Excel"
+  if (t.some(x => ["power-bi", "powerbi", "dax", "pbix"].includes(x))) return "Power BI"
+  if (t.some(x => ["python", "jupyter", "pandas", "scikit-learn", "ml", "machine-learning"].includes(x))) return "Python"
+  if (t.some(x => ["sql", "mysql", "postgresql", "sqlite"].includes(x))) return "SQL"
+  if (t.some(x => ["excel", "xlsx", "spreadsheet", "vba"].includes(x))) return "Excel"
   if (language === "Python") return "Python"
   if (language === "Jupyter Notebook") return "Python"
   return "Python"
@@ -57,8 +58,8 @@ async function fetchGitHubProjects(): Promise<GHProject[]> {
 
     // Map to our project format — only repos NOT already in localProjects
     const localIds = new Set(localProjects.map(p => p.id))
-    const colors = ["#22d3ee","#10b981","#8b5cf6","#f59e0b","#f43f5e","#06b6d4","#a78bfa","#34d399"]
-    const emojis = ["📊","🤖","📈","🗄️","📉","🔬","💹","🧮"]
+    const colors = ["#22d3ee", "#10b981", "#8b5cf6", "#f59e0b", "#f43f5e", "#06b6d4", "#a78bfa", "#34d399"]
+    const emojis = ["📊", "🤖", "📈", "🗄️", "📉", "🔬", "💹", "🧮"]
 
     return filtered
       .filter(r => {
@@ -114,6 +115,7 @@ export default function Projects() {
 
   return (
     <section id="projects" ref={ref} className="py-16 relative">
+      <LogoCorner />
       <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
 
@@ -149,11 +151,10 @@ export default function Projects() {
               onClick={() => setActive(cat)}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
-              className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all border ${
-                active === cat
-                  ? "text-[#0d1117] border-transparent"
-                  : "glass border-[#30363d] text-slate-400 hover:text-white hover:border-cyan-500/30"
-              }`}
+              className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all border ${active === cat
+                ? "text-[#0d1117] border-transparent"
+                : "glass border-[#30363d] text-slate-400 hover:text-white hover:border-cyan-500/30"
+                }`}
               style={active === cat ? { background: "linear-gradient(135deg,#22d3ee,#10b981)" } : {}}
             >
               {cat}
@@ -186,9 +187,9 @@ export default function Projects() {
                   style={{ background: `linear-gradient(135deg, ${"color" in project ? project.color : project.accentColor}, #0d1117)` }}
                 >
                   <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 300 160" preserveAspectRatio="none">
-                    <polyline points="0,130 60,80 120,100 180,40 240,65 300,25" fill="none" stroke="white" strokeWidth="2"/>
-                    <polyline points="0,150 60,110 120,125 180,65 240,85 300,50" fill="none" stroke="white" strokeWidth="1.2"/>
-                    <polyline points="0,100 50,70 100,90 150,45 200,60 250,30 300,45" fill="none" stroke="white" strokeWidth="1"/>
+                    <polyline points="0,130 60,80 120,100 180,40 240,65 300,25" fill="none" stroke="white" strokeWidth="2" />
+                    <polyline points="0,150 60,110 120,125 180,65 240,85 300,50" fill="none" stroke="white" strokeWidth="1.2" />
+                    <polyline points="0,100 50,70 100,90 150,45 200,60 250,30 300,45" fill="none" stroke="white" strokeWidth="1" />
                   </svg>
                   <motion.div className="relative z-10 w-16 h-16 rounded-2xl flex items-center justify-center text-3xl glass border border-white/10 group-hover:scale-110 transition-transform duration-300">
                     {project.emoji}
