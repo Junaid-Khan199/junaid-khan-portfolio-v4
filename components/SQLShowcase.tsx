@@ -242,8 +242,8 @@ export default function SQLShowcase() {
                 {builtin.map((q, i) => (
                   <button key={i} onClick={() => setActiveIdx({ type: "builtin", idx: i })}
                     className={`w-full text-left px-3 py-2.5 rounded-xl text-xs border transition-all ${activeIdx.type === "builtin" && activeIdx.idx === i
-                        ? "border-cyan-500/50 bg-cyan-500/5 text-white"
-                        : "glass border-[#30363d] text-slate-400 hover:text-white hover:border-[#444]"
+                      ? "border-cyan-500/50 bg-cyan-500/5 text-white"
+                      : "glass border-[#30363d] text-slate-400 hover:text-white hover:border-[#444]"
                       }`}>
                     <div className="flex items-center gap-2">
                       <Lock className="w-2.5 h-2.5 text-slate-600 flex-shrink-0" />
@@ -263,8 +263,8 @@ export default function SQLShowcase() {
                     <div key={i} className="relative group">
                       <button onClick={() => setActiveIdx({ type: "saved", idx: i })}
                         className={`w-full text-left px-3 py-2.5 rounded-xl text-xs border transition-all pr-8 ${activeIdx.type === "saved" && activeIdx.idx === i
-                            ? "border-violet-500/50 bg-violet-500/5 text-white"
-                            : "glass border-[#30363d] text-slate-400 hover:text-white hover:border-[#444]"
+                          ? "border-violet-500/50 bg-violet-500/5 text-white"
+                          : "glass border-[#30363d] text-slate-400 hover:text-white hover:border-[#444]"
                           }`}>
                         <span className="line-clamp-2">{q.title}</span>
                       </button>

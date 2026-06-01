@@ -383,8 +383,8 @@ export default function PythonEditor() {
                   {builtins.map((s, i) => (
                     <button key={i} onClick={() => setActiveIdx({ type: "builtin", idx: i })}
                       className={`w-full text-left flex items-center gap-2 px-2 py-1.5 rounded text-xs transition-all ${activeIdx.type === "builtin" && activeIdx.idx === i
-                          ? "bg-[#2d2d3e] text-white"
-                          : "text-slate-500 hover:text-white hover:bg-[#2a2a3e]"
+                        ? "bg-[#2d2d3e] text-white"
+                        : "text-slate-500 hover:text-white hover:bg-[#2a2a3e]"
                         }`}>
                       <span className="text-violet-400 flex-shrink-0">🐍</span>
                       <span className="truncate leading-snug">{s.title}</span>
@@ -402,8 +402,8 @@ export default function PythonEditor() {
                       <div key={i} className="relative group">
                         <button onClick={() => setActiveIdx({ type: "saved", idx: i })}
                           className={`w-full text-left flex items-center gap-2 px-2 py-1.5 rounded text-xs transition-all pr-7 ${activeIdx.type === "saved" && activeIdx.idx === i
-                              ? "bg-[#2d2d3e] text-white"
-                              : "text-slate-500 hover:text-white hover:bg-[#2a2a3e]"
+                            ? "bg-[#2d2d3e] text-white"
+                            : "text-slate-500 hover:text-white hover:bg-[#2a2a3e]"
                             }`}>
                           <span className="text-emerald-400 flex-shrink-0">📄</span>
                           <span className="truncate">{s.title}</span>
