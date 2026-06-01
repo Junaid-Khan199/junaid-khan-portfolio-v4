@@ -61,8 +61,8 @@ export function LogoCorner() {
                         className="fixed z-40"
                         style={{
                             position: "fixed",
-                            top: "96px",
-                            left: "96px",
+                            top: "0px",
+                            left: "0px",
                             width: "400px",
                             height: "400px",
                             padding: 0,
