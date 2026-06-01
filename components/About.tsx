@@ -58,7 +58,7 @@ export function About() {
             <div className="space-y-2.5 pt-1">
               {[
                 { icon: MapPin, v: 'Kohat, KPK, Pakistan', l: 'Location', href: 'https://maps.google.com/?q=Kohat,KPK,Pakistan', clickable: true },
-                { icon: GraduationCap, v: 'BS Statistics – KUST', l: 'CGPA 3.02', href: 'https://kust.edu.pk', clickable: true },
+                { icon: GraduationCap, v: 'BS Statistics – KUST', l: , href: 'https://kust.edu.pk', clickable: true },
                 { icon: Clock, v: '4+ Years', l: 'Hands-on experience (2021–Present)', clickable: false },
                 { icon: Globe, v: 'GCC · Remote Worldwide', l: 'Open to work', clickable: false },
               ].map(f => (
