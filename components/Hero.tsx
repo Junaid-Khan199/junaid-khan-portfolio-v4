@@ -3,7 +3,6 @@ import { useEffect, useState, useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Github, Linkedin, Mail, Download, ChevronDown, BarChart3, Database, Brain, Award, MapPin, FileText } from "lucide-react"
 import Image from "next/image"
-import { LogoCorner } from "./LogoCorner"
 
 const roles = ["Data Analyst", "Power BI Developer", "ML Researcher", "Statistics Graduate"]
 
@@ -32,8 +31,6 @@ export default function Hero() {
 
   return (
     <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden bg-[#0d1117]">
-      <LogoCorner />
-
       <Image src="/For_Background.png" alt="Hero background" fill priority className="absolute inset-0 object-cover object-center" />
       <div className="absolute inset-0 bg-slate-950/65" />
 
