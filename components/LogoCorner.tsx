@@ -45,8 +45,8 @@ export function LogoCorner() {
                         aria-label="Open logo preview"
                         className="fixed z-40"
                         style={{ 
-                            top: 0, 
-                            left: 0, 
+                            top: "96px", 
+                            left: "96px", 
                             width: "400px", 
                             height: "400px", 
                             padding: 0, 
