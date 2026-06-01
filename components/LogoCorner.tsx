@@ -25,7 +25,7 @@ export function LogoCorner() {
             )}
             <motion.button onClick={() => setLogoOpen(true)} aria-label="Open logo preview"
                 className="fixed top-0 left-0 z-40 p-0 m-0"
-                style={{ width: '100px', height: '100px' }}
+                    style={{ width: '200px', height: '200px' }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}>
                 <div style={{ width: '100%', height: '100%', position: 'relative' }} className="overflow-hidden">
