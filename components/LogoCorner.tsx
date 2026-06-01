@@ -13,7 +13,7 @@ export function LogoCorner() {
             const scrollPosition = window.scrollY
 
             // Hide logo after user scrolls past most of the Hero section
-            setShowLogo(scrollPosition < window.innerHeight * 0.0)
+            setShowLogo(scrollPosition < window.innerHeight * 1.2)
         }
 
         window.addEventListener("scroll", handleScroll)
@@ -60,10 +60,11 @@ export function LogoCorner() {
                         aria-label="Open logo preview"
                         className="fixed z-40"
                         style={{
-                            top: "0px",
-                            left: "0px",
-                            width: "300px",
-                            height: "300px",
+                            position: "fixed",
+                            top: "96px",
+                            left: "96px",
+                            width: "400px",
+                            height: "400px",
                             padding: 0,
                             margin: 0,
                             border: 0,
