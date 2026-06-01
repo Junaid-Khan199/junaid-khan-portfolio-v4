@@ -13,7 +13,7 @@ export function LogoCorner() {
             const scrollPosition = window.scrollY
 
             // Hide logo after user scrolls past most of the Hero section
-            setShowLogo(scrollPosition < window.innerHeight * 0.8)
+            setShowLogo(scrollPosition < window.innerHeight * 0.0)
         }
 
         window.addEventListener("scroll", handleScroll)
