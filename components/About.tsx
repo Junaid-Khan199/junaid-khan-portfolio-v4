@@ -3,7 +3,6 @@ import { useRef } from "react"
 import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { MapPin, GraduationCap, Globe, Target, Lightbulb, TrendingUp, Zap, Code2, BarChart3, Database, Award, BookOpen, Clock } from "lucide-react"
-import { LogoCorner } from "./LogoCorner"
 
 const orbitItems = [
   { label: "Power BI", icon: BarChart3, color: "#22d3ee", angle: 0 },
@@ -24,7 +23,6 @@ export function About() {
 
   return (
     <section id="about" ref={ref} className="py-16 relative">
-      <LogoCorner />
       <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-16 items-start">

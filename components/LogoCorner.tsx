@@ -24,11 +24,11 @@ export function LogoCorner() {
                 </div>
             )}
             <motion.button onClick={() => setLogoOpen(true)} aria-label="Open logo preview"
-                className="absolute top-0 left-0 z-40"
-                style={{ width: '6in', height: '6in', padding: 0 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}>
-                <div style={{ width: '6in', height: '6in', position: 'relative' }} className="overflow-hidden">
+                className="fixed top-0 left-0 z-40 p-0 m-0"
+                style={{ width: '100px', height: '100px' }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}>
+                <div style={{ width: '100%', height: '100%', position: 'relative' }} className="overflow-hidden">
                     <Image src="/My_Logo.png" alt="Junaid Khan logo" fill className="object-contain" />
                 </div>
             </motion.button>

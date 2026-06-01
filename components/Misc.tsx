@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation"
 import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { Github, Linkedin, Mail, Download, Award, GraduationCap, Briefcase, ExternalLink, Send, CheckCircle, BarChart3, ArrowUp, Menu, X, Database, Code2, RefreshCw } from "lucide-react"
-import { LogoCorner } from "./LogoCorner"
 
 // ── GitHub KPI AUTO-FETCH ──────────────────────────────────────────
 const GITHUB_USER = "Junaid-Khan199"
@@ -116,7 +115,6 @@ export function KPISection() {
 
   return (
     <div ref={ref} className="py-10 relative">
-      <LogoCorner />
       <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/3 via-transparent to-emerald-500/3" />
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         {/* Top KPIs heading */}
@@ -178,7 +176,6 @@ export function Resume() {
 
   return (
     <section id="resume" ref={ref} className="py-16 relative">
-      <LogoCorner />
       <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} className="text-center mb-12">
@@ -312,7 +309,6 @@ export function Contact() {
 
   return (
     <section id="contact" ref={ref} className="py-16 relative">
-      <LogoCorner />
       <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} className="text-center mb-12">

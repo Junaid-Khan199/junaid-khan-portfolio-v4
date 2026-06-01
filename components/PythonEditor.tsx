@@ -9,7 +9,6 @@ import {
   FolderOpen, Settings, Maximize2, Minimize2, Lock,
   BarChart3
 } from "lucide-react"
-import { LogoCorner } from "./LogoCorner"
 
 const GITHUB_USER = "Junaid-Khan199"
 const STORAGE_KEY = "junaid_py_snippets_"
@@ -302,7 +301,7 @@ export default function PythonEditor() {
 
   return (
     <section id="python" ref={ref} className="py-16 relative">
-      <LogoCorner />
+
       <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
 

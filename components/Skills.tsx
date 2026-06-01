@@ -1,7 +1,6 @@
 "use client"
 import { useRef, useState, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
-import { LogoCorner } from "./LogoCorner"
 
 // Base skill categories — static known skills
 const BASE_SKILL_CATEGORIES = [
@@ -123,7 +122,6 @@ export default function Skills() {
   // Tabs wrap into new row automatically (flex-wrap)
   return (
     <section id="skills" ref={ref} className="py-16 relative">
-      <LogoCorner />
       <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} className="text-center mb-10">

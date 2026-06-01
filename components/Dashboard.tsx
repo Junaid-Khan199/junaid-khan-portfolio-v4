@@ -12,7 +12,6 @@ import {
   Activity, Grid, Plus, Trash2, RefreshCw, Filter, ChevronDown,
   LayoutDashboard, Table2, BarChart3
 } from "lucide-react"
-import { LogoCorner } from "./LogoCorner"
 
 const GITHUB_USER = "Junaid-Khan199"
 
@@ -329,7 +328,6 @@ export default function Dashboard() {
 
   return (
     <section id="dashboard" ref={ref} className="py-16 relative">
-      <LogoCorner />
       <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
 

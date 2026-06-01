@@ -8,7 +8,6 @@ import {
   AlertCircle, X, Plus, Save, Table2, RefreshCw, Info,
   ChevronDown, Lock
 } from "lucide-react"
-import { LogoCorner } from "./LogoCorner"
 
 const GITHUB_USER = "Junaid-Khan199"
 
@@ -201,7 +200,7 @@ export default function SQLShowcase() {
 
   return (
     <section id="sql" ref={ref} className="py-16 relative">
-      <LogoCorner />
+
       <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} className="text-center mb-10">
