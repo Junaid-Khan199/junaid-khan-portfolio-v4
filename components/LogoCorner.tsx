@@ -62,8 +62,8 @@ export function LogoCorner() {
                         style={{
                             top: "0px",
                             left: "0px",
-                            width: "120px",
-                            height: "120px",
+                            width: "300px",
+                            height: "300px",
                             padding: 0,
                             margin: 0,
                             border: 0,
