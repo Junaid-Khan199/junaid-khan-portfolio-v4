@@ -1,11 +1,27 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 
 export function LogoCorner() {
     const [logoOpen, setLogoOpen] = useState(false)
+    const [showLogo, setShowLogo] = useState(true)
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY
+
+            // Hide logo after user scrolls past most of the Hero section
+            setShowLogo(scrollPosition < window.innerHeight * 0.8)
+        }
+
+        window.addEventListener("scroll", handleScroll)
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll)
+        }
+    }, [])
 
     return (
         <>
@@ -34,41 +50,49 @@ export function LogoCorner() {
                 </div>
             )}
 
-            <motion.button
-                onClick={() => setLogoOpen(true)}
-                aria-label="Open logo preview"
-                className="fixed z-40"
-                style={{
-                    top: "0px",
-                    left: "0px",
-                    width: "300px",
-                    height: "300px",
-                    padding: 0,
-                    margin: 0,
-                    border: 0,
-                    background: "transparent",
-                    outline: "none",
-                    cursor: "pointer"
-                }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-            >
-                <div
-                    style={{
-                        width: "100%",
-                        height: "100%",
-                        position: "relative"
-                    }}
-                >
-                    <Image
-                        src="/My_Logo.png"
-                        alt="Junaid Khan logo"
-                        fill
-                        className="object-contain"
-                        priority
-                    />
-                </div>
-            </motion.button>
+            <AnimatePresence>
+                {showLogo && (
+                    <motion.button
+                        initial={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        onClick={() => setLogoOpen(true)}
+                        aria-label="Open logo preview"
+                        className="fixed z-40"
+                        style={{
+                            top: "0px",
+                            left: "0px",
+                            width: "120px",
+                            height: "120px",
+                            padding: 0,
+                            margin: 0,
+                            border: 0,
+                            background: "transparent",
+                            outline: "none",
+                            cursor: "pointer"
+                        }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <div
+                            style={{
+                                width: "100%",
+                                height: "100%",
+                                position: "relative",
+                                overflow: "hidden"
+                            }}
+                        >
+                            <Image
+                                src="/My_Logo.png"
+                                alt="Junaid Khan logo"
+                                fill
+                                className="object-contain"
+                                priority
+                            />
+                        </div>
+                    </motion.button>
+                )}
+            </AnimatePresence>
         </>
     )
 }
