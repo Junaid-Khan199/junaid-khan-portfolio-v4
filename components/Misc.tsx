@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 import Image from "next/image"
 import { motion, useInView } from "framer-motion"
-import { Github, Linkedin, Mail, Download, Award, GraduationCap, Briefcase, ExternalLink, Send, CheckCircle, BarChart3, ArrowUp, Menu, X, Database, Code2, RefreshCw } from "lucide-react"
+import { Github, Linkedin, Mail, Download, Award, GraduationCap, Briefcase, ExternalLink, Send, CheckCircle, BarChart3, ArrowUp, Menu, X, RefreshCw } from "lucide-react"
 
 // ── GitHub KPI AUTO-FETCH ──────────────────────────────────────────
 const GITHUB_USER = "Junaid-Khan199"
@@ -105,9 +105,8 @@ export function KPISection() {
   const recs = formatRecords(kpiData.totalRecords)
 
   const kpis = [
+    { icon: Briefcase, label: "Years Experience", target: 4, suffix: "+", color: "#f43f5e", bg: "#f43f5e18" },
     { icon: BarChart3, label: "Projects", target: kpiData.projects, suffix: "+", color: "#22d3ee", bg: "#22d3ee18" },
-    { icon: Database, label: "Records Processed", target: recs.value, suffix: recs.suffix, color: "#10b981", bg: "#10b98118" },
-    { icon: Code2, label: "Best ML Accuracy", target: kpiData.mlAccuracy, suffix: "%", color: "#8b5cf6", bg: "#8b5cf618" },
     { icon: Award, label: "Published Papers", target: kpiData.papers, suffix: "", color: "#f59e0b", bg: "#f59e0b18" },
     { icon: GraduationCap, label: "Tools Mastered", target: kpiData.tools, suffix: "+", color: "#f43f5e", bg: "#f43f5e18" },
     { icon: Award, label: "Certifications", target: kpiData.certifications, suffix: "", color: "#06b6d4", bg: "#06b6d418" },
