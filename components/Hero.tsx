@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState, useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { Github, Linkedin, Mail, Download, ChevronDown, BarChart3, Database, Brain, Award, MapPin, FileText } from "lucide-react"
+import { Github, Linkedin, Mail, Download, ChevronDown, BarChart3, Award, FileText } from "lucide-react"
 import Image from "next/image"
 
 const roles = ["Data Analyst", "Power BI Developer", "ML Researcher", "Statistics Graduate"]
@@ -112,11 +112,9 @@ export default function Hero() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.62 }}
               className="flex flex-wrap gap-3">
               {[
-                { icon: BarChart3, label: "7+ Projects", color: "#22d3ee" },
-                { icon: Brain, label: "97% ML Accuracy", color: "#10b981" },
-                { icon: Database, label: "185K+ Records", color: "#8b5cf6" },
-                { icon: Award, label: "Published Author", color: "#f59e0b" },
                 { icon: FileText, label: "4+ Years Exp.", color: "#f43f5e" },
+                { icon: BarChart3, label: "7+ Projects", color: "#22d3ee" },
+                { icon: Award, label: "Published Author", color: "#f59e0b" },
               ].map(s => (
                 <div key={s.label} className="flex items-center gap-2 px-3.5 py-2 rounded-xl glass border border-[#30363d]">
                   <s.icon className="w-3.5 h-3.5 flex-shrink-0" style={{ color: s.color }} />
